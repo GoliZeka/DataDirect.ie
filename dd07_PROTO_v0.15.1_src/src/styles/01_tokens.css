@@ -1,0 +1,19 @@
+/* =========================================================
+   TOKENS (Figma variables) + type styles
+   v0.8.4: version layers merged into this module (computed styles verified identical).
+   ========================================================= */
+/* ========================================================= TOKENS (Figma variables, dd07 10_HOME) ========================================================= */
+:root{--space-4:4px;--space-8:8px;--space-12:12px;--space-16:16px;--space-24:24px;--space-32:32px;--space-48:48px;--space-64:64px;--space-96:96px;--layout-gutter:76px;--layout-hero-row:256px;--container:1288px;--frame:1440px;--radius-sm:8px;--radius-md:12px;--radius-lg:24px;--radius-xl:32px;--radius-pill:999px;--brand-pink:#FF0099;--brand-purple:#523B8C;--brand-purple-deep:#260C41;--text-primary:#1F1B18;--text-secondary:#6B6B6B;--text-muted:#707070;--text-inverse:#FFFFFF;--text-inverse-muted:#E9E3DD;--text-inverse-subtle:#A79C93;--text-accent-warm:#D8AA87;--text-accent-warm-strong:#8C6240;--surface-page:#FFFFFF;--surface-subtle:#F1F3F2;--surface-subtle-glass:rgba(241,243,242,.77);--surface-raised:#FDFDFD;--surface-tint-warm:#F3EEE9;--surface-tint-lilac:#F8F5FA;--surface-tint-yellow:#FBF6E6;--surface-tint-yellow-strong:#F6EECE;--surface-inverse:#1F1B18;--border-control:#F2F2F2;--border-subtle:#E8DED7;--border-strong:#D4D4D4;--surface-tint-pink:#FEECF6;--surface-hero:#FDFCF8;--border-selected:#C4926D;--status-success:#1F7A37;--status-warning:#9A6700;--status-info:#3B6EA5;--status-error:#D92D20;--accent-yellow:#FFE500;--grad-multi:linear-gradient(90deg,#B51CA6 0%,#FFB700 100%);--grad-cart-empty:linear-gradient(61.3deg,#A08DB7 0%,#D7ACDE 100%);--grad-cart-filled:linear-gradient(19deg,#4E43AD 13.6%,#FF00A1 92.5%);--elev-tile:inset 0 2px 12px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.08);--font:'Outfit',system-ui,sans-serif}   /* Spacing */   /* Radius */   /* Color */   /* Gradients */   /* Effects */   /* Typography (Outfit, 400 / 600) */
+
+/* Type styles (Figma "Type/") */
+.t-display{font:600 56px/60px var(--font);letter-spacing:-0.02em}
+.t-h1{font:600 32px/36px var(--font)}
+.t-h2{font:600 24px/28px var(--font)}
+.t-title{font:600 20px/22px var(--font)}
+.t-body{font:400 16px/24px var(--font)}
+.t-body-sb{font:600 16px/24px var(--font)}
+.t-small{font:400 14px/20px var(--font)}
+.t-small-sb{font:600 14px/20px var(--font)}
+.t-caption{font:400 12px/16px var(--font)}
+.t-caption-sb{font:600 12px/16px var(--font)}
+.t-caption-upper{font:600 12px/16px var(--font);letter-spacing:0.04em;text-transform:uppercase}

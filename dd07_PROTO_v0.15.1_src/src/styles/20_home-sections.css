@@ -1,0 +1,335 @@
+/* =========================================================
+   HOME SECTIONS: Final v1.6 5449:11837 (hero, brands, promo, R2G, What's new, Best sellers, CTA)
+   v0.8.4: version layers merged into this module (computed styles verified identical).
+   History:
+   - v0.3.1: only the hero carousel runs edge to edge; every other section bleeds to the 1440 frame, never past it
+   - v0.4: Hero carousel (infinite, full width, step 1312 = page 1288 + gap 24, 777ms ease-out)
+   - v0.5: Product rails (step 328 = card 304 + gap 24, 777ms ease-out) + hover maxi card (5332:5753)
+   - v0.5.2: Hero Carousel / v1.1 (Final v1.1): Hero Card / Feature 632x536, 2 visible, step 656 (card 632 + gap 24)
+   - v0.5.3: Hero Carousel / v1.2 + hover state (Figma 5394:6745) hover: photo scale 1.04 (frame fixed) + text pills; leave = unscale, pills fade out. 400ms ease-out
+   - v0.5.5: Shop by brand v1.1 (Final v1.3, Brand Badge / v1.1). Section 160 = row 112 + padding 48, no heading. Default: 112 circle surface/subtle, border/control 1 inside, 0 4 16 #000 8%, mono logo 88x44 text/muted. Hover = focus: 128 (scale 1.142857), surface/page, Elevation/Overlay, color logo (x1.1
+   - ===== v0.5.6 (Final v1.5 5426:8394) =====
+   - v0.5.6.1 - compact bundle maxi (Bundle Card / Short (test) Hover 5422:8412, Final v1.5)
+   - v0.5.6.2 - Final v1.5 (user edits 19 okt): bundle pill instead of eyebrow; order R2G > What's new > Best sellers > CTA > Footer
+   - v0.6 - Cart: mini cart 1/1 from masters PLP / Mini Cart / Desktop 3275:30795 + Empty 5054:29962 (30_PLP_SEARCH). Masters are not tokenized in Figma (radius 16/12, 13/18 px, Medium 14, shadow 0 8 32): values copied as they are. Placement 1/1 with PLP frames: x 1016 / y 64 in the 1440 frame (right 24 
+   - v0.7.0 - Home / Desktop / Final v1.6 (5449:11837), strana 4104
+   ========================================================= */
+/* ========================================================= v0.3 SECTIONS (source: Home / Desktop / 1-14 TEST (Block 1) 5267:4133) ========================================================= */
+:root{--a-hero-mask:url("data:image/svg+xml;base64,PHN2ZyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBvdmVyZmxvdz0idmlzaWJsZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyIgd2lkdGg9IjI5NiIgaGVpZ2h0PSIyNTYiIHZpZXdCb3g9IjAgMCAyOTYgMjU2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCBpZD0iRmFkZSBtYXNrIiB3aWR0aD0iMjk2IiBoZWlnaHQ9IjI1NiIgZmlsbD0idXJsKCNwYWludDBfbGluZWFyXzBfODkwKSIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyXzBfODkwIiB4MT0iMCIgeTE9IjEyOCIgeDI9IjI5NiIgeTI9IjEyOCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLW9wYWNpdHk9IjAiLz4KPHN0b3Agb2Zmc2V0PSIwLjEyIi8+CjxzdG9wIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=")}
+.inner{width:var(--container);margin:0 auto;position:relative}
+
+/* Shared tile surface (Elevation/Tile = drop + inner shadow) */
+.tile{position:relative;overflow:hidden;border:1px solid var(--border-subtle);border-radius:var(--radius-xl);box-shadow:0 4px 16px rgba(0,0,0,.08);flex:none}
+.tile::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 2px 12px rgba(0,0,0,.08);pointer-events:none;z-index:3}
+.tile > *{position:relative;z-index:1}
+.tile > .bg{position:absolute;inset:0;z-index:0;border-radius:inherit;overflow:hidden}
+.tile > .bg img{position:absolute;max-width:none}
+
+/* ---------- HERO BENTO 5267:4135 (96 + carousel 604 = 700) ---------- */
+.sec-hero{height:700px;padding-top:var(--space-96);background:var(--surface-page)}
+.hc{position:relative;width:100%;height:604px}
+.hc-track{position:absolute;left:0;top:0;width:100%;height:536px;overflow:hidden}
+.hc-pages{position:absolute;top:0;left:50%;display:flex;gap:24px;transform:translateX(calc(-644px - 3936px))}   /* Page 4 centred (Figma left -3860 @1440) */
+.hc-page{display:flex;gap:24px;flex:none}
+.hc-right{display:flex;flex-direction:column;gap:24px}
+.hc-row{display:flex;gap:24px}
+.t-feat{width:632px;height:536px;display:flex;flex-direction:column;justify-content:flex-end;gap:24px;padding:40px 32px 32px 40px;background:var(--surface-page)}
+.t-feat .ph{position:absolute;left:165px;top:7px;width:300px;height:300px;background:var(--surface-subtle);z-index:0}
+.t-feat .bg.subtle{background:var(--surface-subtle)}
+.t-feat .bg.raised{background:var(--surface-raised)}
+.t-feat .bg img{inset:0;width:100%;height:100%;object-fit:cover}
+.t-feat .ttl{color:var(--text-primary);white-space:nowrap}
+.t-feat .lnk{display:flex;justify-content:flex-end;width:100%;color:var(--text-primary);white-space:pre}
+.t-a,.t-b{width:304px;height:256px;display:flex;flex-direction:column;justify-content:space-between;padding:32px}
+.t-a{background:linear-gradient(180deg,rgba(255,218,188,0) 55%,rgba(255,218,188,.35) 100%),#FDFDFD}
+.t-a .ttl{color:var(--text-accent-warm)}
+.t-a .ttl .lilac{color:#D3A9DB}
+.t-a .lnk{color:var(--brand-purple-deep);white-space:pre}
+.t-a .mark{position:absolute;right:-97px;top:50%;width:192px;height:192px;transform:translateY(-50%);z-index:1}
+.t-a .mark img{position:absolute;left:0;top:0;width:191.773px;height:192px}
+.t-b{background:var(--surface-tint-warm)}
+.t-b .ttl,.t-b .lnk{color:var(--text-primary)}
+.t-b .lnk{white-space:pre}
+.t-story{width:632px;height:256px}
+.t-story.v1{display:flex;align-items:center;justify-content:space-between;padding:32px 40px;background:linear-gradient(180deg,rgba(184,111,71,.18) 0%,rgba(249,153,98,.3) 64.423%,rgba(254,43,160,.36) 98.558%)}
+.t-story.v1 .copy{width:320px;display:flex;flex-direction:column;gap:12px}
+.t-story.v1 .eyebrow{background:linear-gradient(180deg,rgba(255,224,204,0),#FF00C8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.t-story.v1 .ttl,.t-story.v1 .lnk{color:var(--text-primary)}
+.t-story.v1 .lnk{white-space:nowrap}
+.t-story .benefits{display:flex;flex-direction:column;gap:14px}
+.t-story .benefit{display:flex;align-items:center;gap:12px;color:var(--text-primary);white-space:nowrap}
+.t-story .benefit img{width:8px;height:8px}
+.t-story.v2{display:flex;gap:40px;align-items:flex-start;padding:32px 40px 32px 32px}
+.t-story.v2 .bg img{width:312.5%;height:769.23%;left:-206.25%;top:-23.08%}
+.t-story.v2 .copy{width:320px;height:100%;display:flex;flex-direction:column;justify-content:space-between;gap:12px;color:var(--text-inverse)}
+.t-story.v2 .lnk{white-space:pre}
+.t-story .media{position:absolute;right:-1px;top:-1px;bottom:-1px;width:296px;overflow:hidden;z-index:1}
+.t-story .media .mk{position:absolute;left:0;top:0;width:296px;height:256px;overflow:hidden;-webkit-mask-size:296px 256px;mask-size:296px 256px;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-mode:alpha;mask-mode:alpha}
+.t-story .media .mk img{position:absolute;max-width:none;width:116.28%;height:134.45%;left:-8.14%;top:-34.45%}
+.hc-ctrl{position:absolute;top:560px;left:calc(50% - 568px);width:1288px;height:44px;display:flex;justify-content:flex-end;gap:12px}
+.arrow-44{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:var(--surface-page);border:1px solid var(--border-control);border-radius:var(--radius-pill);color:var(--text-primary)}
+
+/* ---------- SHOP BY BRAND 5267:4137 (160 + 48 = 208) ---------- */
+.sec-brands{height:208px;padding-bottom:var(--space-48);background:var(--surface-page)}
+.sec-brands .inner{display:flex;flex-direction:column;gap:var(--space-24)}
+.sec-brands .head{color:var(--text-muted)}
+.brands{display:flex;justify-content:space-between;align-items:center}
+.brand-badge{position:relative;width:112px;height:112px;flex:none}
+.brand-badge img{position:absolute;left:-12.8px;top:-9.6px;width:137.6px;height:137.6px;max-width:none}
+
+/* ---------- PROMO / DELL PRO PHOTO BANNER 5308:5944 (526) ---------- */
+.sec-promo{position:relative;height:526px;overflow:hidden}
+.sec-promo > img{position:absolute;top:0;height:526px;width:1440px;max-width:none;object-fit:cover;pointer-events:none}
+.sec-promo .ph-base{left:0;width:100%}
+.sec-promo .ph-top{left:8px}
+.promo-actions{position:absolute;left:76px;top:364px;display:flex;gap:12px}
+.btn-shop{width:256px;height:40px;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 20px;border-radius:var(--radius-md);background:var(--grad-multi);color:var(--text-inverse);white-space:nowrap}
+.btn-shop img{width:20px;height:20px}
+.btn-ghost{height:40px;display:flex;align-items:center;padding:0 12px;background:var(--surface-page);border:1px solid var(--border-control);border-radius:var(--radius-md);color:var(--text-secondary);white-space:nowrap}
+
+/* ---------- R2G_V2.0 5298:5761 (600, tint-warm, bottom radius) ---------- */
+.sec-r2g{position:relative;height:600px;padding:96px 76px;background:var(--surface-tint-warm);border-radius:0 0 var(--radius-xl) var(--radius-xl);overflow:hidden}
+.sec-r2g .bgmark{position:absolute;right:-340px;bottom:-300px;width:900px;height:900px;pointer-events:none}
+.sec-r2g .bgmark img{position:absolute;left:0;top:0;width:898.934px;height:900px;max-width:none}
+.r2g{position:relative;display:flex;gap:24px;width:100%}
+.r2g-head{width:304px;flex:none;display:flex;flex-direction:column;gap:16px}
+.r2g-head .ttl{color:var(--text-primary)}
+.r2g-head .sub{color:var(--text-secondary)}
+.r2g-cards{flex:1 0 0;min-width:1px;display:flex;gap:24px;overflow:hidden}
+.bcard{width:304px;height:408px;flex:none;display:flex;flex-direction:column;border:1px solid var(--border-subtle);border-radius:var(--radius-xl);overflow:hidden}
+.bmosaic{position:relative;height:264px;flex:none;background:rgba(241,243,242,.77)}
+.btile{position:absolute;width:132px;height:112px;border-radius:var(--radius-md);background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.btile.tall{height:232px}
+.btile img{position:absolute;max-width:none}
+.btile img.contain{inset:0;width:100%;height:100%;object-fit:contain}
+.btile img.crop-mon{width:188.55%;height:166.67%;left:-57.47%;top:0}
+.btile img.crop-hs{width:269.36%;height:238.1%;left:-169.36%;top:-97.62%}
+.btile .lbl{position:relative;color:var(--text-muted)}
+.btile.more{background:var(--surface-page);color:var(--text-primary)}
+.binfo{flex:1 0 0;min-height:1px;display:flex;flex-direction:column;justify-content:space-between;padding:16px;background:var(--surface-page);overflow:hidden}
+.bid{position:relative;display:flex;gap:12px}
+.bname{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;gap:4px;padding-right:48px;white-space:nowrap;overflow:hidden}
+.bname .kind{color:var(--text-secondary)}
+.bname .nm{color:var(--text-primary);overflow:hidden;text-overflow:ellipsis}
+.sticker{position:absolute;right:-5.93px;top:-6.98px;width:56.931px;height:56.931px;display:flex;align-items:center;justify-content:center}
+.sticker > div{width:48px;height:48px;border-radius:24px;background:var(--accent-yellow);color:var(--text-primary);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-12deg);white-space:nowrap;font-weight:600}
+.sticker .s1{font-size:12px;line-height:16px}
+.sticker .s2{font-size:16px;line-height:20px}
+.bwas{padding-top:18px;color:var(--text-muted);text-decoration:line-through}
+
+/* Shared price + availability (Commerce / Product Price, Product Availability) */
+.price-row{display:flex;align-items:baseline;justify-content:space-between}
+.price{display:flex;align-items:baseline;gap:4px;white-space:nowrap}
+.price .amt{color:var(--text-primary)}
+.price .vat{color:var(--text-secondary)}
+.avail{display:flex;align-items:center;gap:6px;padding:4px 0;color:var(--status-success);white-space:nowrap}
+.avail img{width:8px;height:8px}
+
+/* ---------- PRODUCT RAILS 5267:4149 / 5298:5723 ---------- */
+.sec-rail{background:var(--surface-page);padding-top:var(--space-96)}
+.sec-rail.wn{height:660px}
+.sec-rail.bs{height:691px}
+.rail{display:flex;flex-direction:column;gap:24px}
+.rail-head{display:flex;align-items:flex-end;justify-content:space-between;color:var(--text-primary)}
+.rail-head .ttl{flex:1 0 0}
+.rail-head .all{white-space:nowrap}
+.rail-cards{display:flex;gap:24px;overflow:hidden;width:100%}
+.rail-arrow{position:absolute;top:176px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--surface-page);border:1px solid var(--border-control);border-radius:16px}
+.rail-arrow.prev{left:-48px;color:var(--text-muted)}
+.rail-arrow.next{right:-48px;color:var(--text-primary)}
+
+/* Home / Short Card */
+.pcard{width:304px;height:408px;flex:none;display:flex;flex-direction:column;padding-bottom:16px;background:var(--surface-page);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);overflow:hidden}
+.pimg{position:relative;height:264px;flex:none;background:var(--surface-subtle);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pimg .pic{position:relative;width:100%;aspect-ratio:1341/1173;mix-blend-mode:multiply}
+.pimg .pic.normal{mix-blend-mode:normal}
+.pimg .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pbadge{position:absolute;left:16px;top:16px;padding:4px 8px;border-radius:var(--radius-pill);background:var(--surface-page);color:var(--brand-purple)}
+.pid{display:flex;flex-direction:column;gap:4px;padding:16px 16px 0}
+.pid .brand{color:var(--text-muted)}
+.pid .nm{min-height:48px;max-height:48px;overflow:hidden;color:var(--text-primary);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.pbuy{padding:12px 16px 0}
+
+/* ---------- CTA BAND 5326:5557 (322, tint-warm, bottom radius) ---------- */
+.sec-cta{height:322px;padding:96px var(--layout-gutter);background:var(--surface-tint-warm);border-radius:0 0 var(--radius-xl) var(--radius-xl);overflow:hidden}
+.cta{position:relative;height:130px;display:flex;align-items:center;justify-content:flex-end;gap:48px;padding:48px 64px;border-radius:var(--radius-xl);overflow:hidden}
+.cta .bg{position:absolute;inset:0;border-radius:inherit;overflow:hidden}
+.cta .bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cta .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(253,252,248,0) 28%,rgba(253,252,248,.72) 50%,rgba(253,252,248,.8) 100%)}
+.cta .copy{position:relative;display:flex;flex-direction:column;gap:12px}
+.cta .copy .ttl{color:var(--text-primary)}
+.cta .copy .sub{color:var(--text-secondary)}
+.cta .act{position:relative;color:var(--text-primary);white-space:pre}
+.btop{display:flex;flex-direction:column;gap:12px}
+.sec-brands,.sec-promo,.sec-r2g,.sec-rail,.sec-cta{width:100%;max-width:var(--frame);margin-left:auto;margin-right:auto}
+.hc-pages{transform:translateX(calc(-644px - var(--hc-i, 5) * 1312px));transition:transform 777ms ease-out;will-change:transform}   /* Page 4 centred (Figma left -3860 @1440) */
+.hc-pages.no-anim{transition:none}
+@media (prefers-reduced-motion: reduce){.hc-pages{transition:none}}
+.arrow-44{box-shadow:0 4px 16px rgba(0,0,0,.08);cursor:pointer}
+.arrow-44:focus-visible{outline:2px solid var(--brand-purple);outline-offset:2px}
+
+/* ---------- PRODUCT RAILS 5267:4149 / 5298:5723 ---------- */
+.sec-rail{position:relative;z-index:2}   /* maxi layer may overlap the next band */
+.rail-view{width:100%;overflow-x:clip;overflow-y:visible}
+.rail-track{display:flex;gap:24px;transform:translateX(calc(var(--ri, 0) * -328px));transition:transform 777ms ease-out}
+@media (prefers-reduced-motion: reduce){.rail-track{transition:none}}
+.rail-arrow{-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);cursor:pointer}
+.rail-arrow[aria-disabled="true"]{color:var(--text-muted);cursor:default}
+.rail-arrow:not([aria-disabled="true"]){color:var(--text-primary)}
+.rail-arrow:focus-visible,.pslot:focus-visible{outline:2px solid var(--brand-purple);outline-offset:2px}
+.pslot{position:relative;width:304px;flex:none;border-radius:var(--radius-xl);cursor:pointer}
+.pmaxi{position:absolute;left:0;top:0;width:304px;height:576px;display:none;flex-direction:column;padding-bottom:16px;background:var(--surface-page);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);overflow:hidden;z-index:5}
+.pslot:hover,.pslot:focus-within{z-index:5}
+.pslot:hover .pmaxi,.pslot:focus-within .pmaxi{display:flex}
+.pm-img{position:relative;display:block;height:264px;flex:none;background:var(--surface-subtle);border-radius:var(--radius-sm);overflow:hidden}
+.pm-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pmaxi .pid .nm{min-height:0;max-height:none;display:block;overflow:hidden;text-overflow:ellipsis}
+.pm-hl{display:flex;flex-direction:column;gap:4px;padding:12px 16px 0;color:var(--text-secondary);white-space:nowrap}
+.pm-sp{flex:1 0 0;min-height:1px}
+.pm-buy{height:36px;flex:none;padding:0 16px 12px;overflow:hidden}
+.pm-buy .price-row{height:26px;gap:8px}
+.pm-stock{display:flex;align-items:center;gap:4px}
+.pm-del{color:var(--text-secondary);white-space:nowrap}
+.pm-cta{display:flex;align-items:center;gap:8px;padding:0 16px}
+.pm-add{flex:1 0 0;width:auto;min-width:1px}
+.h11-track{transform:translateX(calc(-644px - var(--hc-i, 2) * 656px))}
+.h11{width:632px;height:536px;display:flex;flex-direction:column;justify-content:flex-end;gap:24px;padding:40px 32px 32px 40px;cursor:pointer}
+.h11-raised{background:var(--surface-raised)}
+.h11-ttl{color:var(--text-primary);white-space:nowrap}
+.h11-ttl.warm{color:var(--text-accent-warm)}
+.h11-ttl .lilac{color:#D3A9DB}
+.h11-lnk{align-self:flex-end;color:var(--text-primary);white-space:pre}
+.h11 > .h11-full{position:absolute;inset:-1px;z-index:0}
+.h11 > .h11-full img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.h11 > .h11-box{position:absolute;left:40px;top:23px;width:304px;height:232px;border-radius:var(--radius-lg);overflow:hidden;z-index:0}
+.h11-box-warm{background:linear-gradient(180deg,rgba(255,218,188,0) 55%,rgba(255,218,188,.35) 100%),#FDFDFD}
+.h11-box-tint{background:var(--surface-tint-warm)}
+.h11-mark{position:absolute;right:-96px;top:calc(50% + 12px);width:192px;height:192px;transform:translateY(-50%)}
+.h11-mark img{position:absolute;left:0;top:0;width:191.773px;height:192px}
+.h11-top{justify-content:space-between;gap:0}   /* Text=Top (Amazon): headline top-left, visual 420x420 bottom-right */
+.h11-amazon{background:#4D3E93}
+.h11-amazon .h11-ttl,.h11-amazon .h11-lnk{color:var(--text-inverse)}
+.h11 > .h11-media420{position:absolute;right:-1px;bottom:-1px;width:420px;height:420px;z-index:0}
+.h11 > .h11-media420 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.h11 .h12-photo img{transition:transform 400ms ease-out;transform-origin:50% 50%}
+.h11:hover .h12-photo img,.h11:focus-visible .h12-photo img{transform:scale(1.04)}
+.h11-media420.h12-photo{overflow:hidden}
+.h11 > .h12-photo{overflow:hidden}
+.h12-white .h11-ttl,.h12-white .h11-lnk{color:var(--text-inverse)}
+.h12-dark .h11-ttl,.h12-dark .h11-lnk{color:var(--text-primary)}
+.pill-wrap{position:relative;display:inline-block;z-index:0}
+.pill-wrap::before{content:"";position:absolute;z-index:-1;inset:-8px -16px;border-radius:var(--radius-lg);opacity:0;transition:opacity 400ms ease-out;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.h11-lnk .pill-wrap::before{inset:-6px -16px;border-radius:var(--radius-pill)}
+.h12-dark .pill-wrap::before{background:rgba(255,255,255,.72)}   /* surface/page 72% */
+.h12-white .pill-wrap::before{background:rgba(31,27,24,.48)}   /* surface/inverse 48% */
+.h11:hover .pill-wrap::before,.h11:focus-visible .pill-wrap::before{opacity:1}
+.h11:focus-visible{outline:2px solid var(--brand-purple);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){.h11 .h12-photo img,.pill-wrap::before{transition:none}}
+.h12-white .h11-ttl.tone-dark{color:var(--text-primary)}   /* v0.5.3.1: Trio card, live headline dark (text/primary) over light screen, link white */
+.h12-white .h11-ttl.tone-dark .pill-wrap::before{background:rgba(255,255,255,.72)}
+
+/* ---------- SHOP BY BRAND 5267:4137 (160 + 48 = 208) ---------- */
+.sec-brands{height:160px}
+.sec-brands .inner{display:block}
+.brand-badge{display:block;width:112px;height:112px;border-radius:50%;outline:none;transition:transform 333ms ease-out}
+.bb-in{position:absolute;inset:0;display:block;border-radius:50%;background:var(--surface-subtle);box-shadow:inset 0 0 0 1px var(--border-control),0 4px 16px rgba(0,0,0,.08);transition:transform 333ms ease-out,background-color 333ms ease-out,box-shadow 333ms ease-out}
+.bb-logo{position:absolute;left:12px;top:34px;width:88px;height:44px;transition:opacity 333ms ease-out,transform 333ms ease-out}
+.bb-color{opacity:0}
+.brand-badge:hover,.brand-badge:focus-visible{z-index:2}
+.brand-badge:hover .bb-in,.brand-badge:focus-visible .bb-in{transform:scale(1.142857);background:var(--surface-page)}
+.brand-badge:hover .bb-mono,.brand-badge:focus-visible .bb-mono{opacity:0;transform:scale(1.1)}
+.brand-badge:hover .bb-color,.brand-badge:focus-visible .bb-color{opacity:1;transform:scale(1.1)}
+.brand-badge:is(:hover,:focus-visible) ~ .brand-badge{transform:translateX(8px)}   /* neighbours make room: everything after the active badge +8, everything before -8 */
+.brand-badge:has(~ .brand-badge:is(:hover,:focus-visible)){transform:translateX(-8px)}
+@media (prefers-reduced-motion: reduce){.brand-badge,.bb-in,.bb-logo{transition:none}}
+.h11 > .h13-boxwhite{background:var(--surface-page)}   /* Hero Carousel / v1.3: Desk bundle card (Text=Bottom, Box image 304x232 at 40/23, surface/page, image contain) */
+.h11 > .h13-boxwhite img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.sec-brands .brands{height:112px;align-items:center}   /* Shop by brand v1.2 (Brand Badge / v1.2 5418:7574): 76 default / 88 hover, row stays 112, neighbours +-6 */
+.brand-badge{cursor:pointer;width:76px;height:76px}
+.bb-logo{left:8.15px;top:23.05px;width:59.7px;height:29.9px}
+.brand-badge:hover .bb-in,.brand-badge:focus-visible .bb-in{box-shadow:inset 0 0 0 1px var(--border-control),0 12px 32px rgba(0,0,0,.12);transform:scale(1.157895)}
+.brand-badge:is(:hover,:focus-visible) ~ .brand-badge{transform:translateX(6px)}   /* neighbours make room: everything after the active badge +8, everything before -8 */
+.brand-badge:has(~ .brand-badge:is(:hover,:focus-visible)){transform:translateX(-6px)}
+.sec-r2g{overflow:visible;position:relative;z-index:3}   /* Bundle Card mini/maxi (5422:8483): maxi = layer over content below, no layout shift */
+.r2g-clip{position:absolute;inset:0;overflow:hidden;border-radius:0 0 var(--radius-xl) var(--radius-xl);pointer-events:none}
+.r2g-cards{overflow-x:clip;overflow-y:visible}
+.bslot{position:relative;width:304px;flex:none;border-radius:var(--radius-xl);cursor:pointer}
+.bslot .bcard{width:304px}
+.bmaxi{width:304px;display:none;flex-direction:column;padding-bottom:16px;background:var(--surface-page);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);z-index:5}
+.bslot:hover,.bslot:focus-within{z-index:5}
+.bslot:hover .bmaxi,.bslot:focus-within .bmaxi{display:flex}
+.bslot:focus-visible{outline:2px solid var(--brand-purple);outline-offset:2px}
+.bm-info{display:flex;flex-direction:column;padding:16px 16px 12px}
+.bm-items{display:flex;gap:4px;padding:12px 0 16px;color:var(--text-secondary);white-space:nowrap}
+.bmaxi .pm-cta{padding:0 16px}
+.bm-foot{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 0}
+.bm-save{display:flex;align-items:center;gap:4px;color:var(--text-secondary);cursor:pointer}   /* as single maxi Save (text/secondary) */
+.bm-save svg{width:14px;height:14px}
+.bm-quote{color:var(--text-primary);white-space:pre;cursor:pointer}
+.bmaxi{position:absolute;left:0;top:0;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.12);border:0}   /* 1/1 heights: Figma strokes are INSIDE (card 578, counter 40) */
+.bmaxi::after{content:"";position:absolute;inset:0;border:1px solid var(--border-subtle);border-radius:inherit;pointer-events:none;z-index:6}
+.bm-info{background:var(--surface-page);height:160px;box-sizing:border-box;padding:16px;justify-content:space-between}
+.bm-items{flex-direction:column;display:block;padding:0;gap:0;overflow:hidden;white-space:normal}
+.bm-items > div{display:flex;flex-wrap:wrap;row-gap:0;margin-left:-12px}
+.bm-items span{white-space:nowrap;position:relative;padding-left:12px}
+.bm-items span::before{content:"·";position:absolute;left:4px}
+.bm-was{color:var(--text-muted);text-decoration:line-through}
+.bpill{z-index:1}   /* Product Badge 254:686 look (Type=New), label "N items", SemiBold 12 */
+
+/* ---------- R2G_V2.0 5298:5761 (600, tint-warm, bottom radius) ---------- */
+.sec-r2g{z-index:4}   /* Bundle Card mini/maxi (5422:8483): maxi = layer over content below, no layout shift */   /* bundle maxi over What's new */
+.sec-rail.wn{z-index:3}   /* What's new maxi over Best sellers */
+.sec-rail.bs{z-index:2;border-radius:0 0 var(--radius-xl) var(--radius-xl)}   /* white curls over the CTA band */
+
+/* ---------- CTA BAND 5326:5557 (322, tint-warm, bottom radius) ---------- */
+.sec-cta{border-radius:0;overflow:visible;box-shadow:0 -32px 0 var(--surface-tint-warm)}   /* flat; tuck strip 5436:9153 under the white corners */
+.sec-cta .cta{overflow:hidden}
+.bid{height:auto}   /* Product Identity stays 44 (card 408 / maxi 508 unchanged) */   /* v0.6 - Bundle Card / Short (test), Figma 19 okt: Product Identity hugs 24 (eyebrow gone, Default Info 144 space-between keeps 408); Hover: Info / Top 5437:9153 = Identity + Bundle Contents, gap 4, contents width 224; Pricing stays at the bottom */
+.bm-top{display:flex;flex-direction:column;gap:4px}
+.bm-top .bm-items{width:224px}
+
+/* ---------- HERO BENTO 5267:4135 (96 + carousel 604 = 700) ---------- */
+.sec-hero{height:636px;padding-top:var(--space-32)}   /* Hero Bento 636: carousel 32 ispod headera (bilo 96) */
+.sec-brands .brands{justify-content:center;gap:92px}   /* Shop by brand v1.2 (Brand Badge / v1.2 5418:7574): 76 default / 88 hover, row stays 112, neighbours +-6 */   /* Shop by brand (5449:11845): 6 bedževa grupisano na sredini, korak 168 (76 + 92) */
+.bpill{background:var(--accent-yellow);color:var(--brand-purple)}   /* Product Badge 254:686 look (Type=New), label "N items", SemiBold 12 */   /* R2G (5449:11857): pill "N items" = accent/yellow + brand/purple */
+.sticker{right:-1px;top:.91px;width:52.187px;height:52.187px}   /* Commerce / Saving Sticker 5600:3206: 44, Multi 57deg, beli tekst sa senkom, rotacija -12; card: right 15 / top 280.91 -> bid: right -1 / top .91 */
+.sticker > div{width:44px;height:44px;border-radius:22px;background:linear-gradient(57deg,#B51CA6 10.609%,#FFB700 50.109%);color:var(--text-inverse);text-shadow:0 1px 0 rgba(0,0,0,.5);overflow:hidden}
+.sticker .s1{font-size:12px;line-height:12px}
+.sticker .s2{font-size:16px;line-height:16px;text-align:center}
+.pimg .pic.fit-contain img,.pm-img.fit-contain img{object-fit:contain}   /* Short Card slike: Figma object-fit contain (Best sellers 1-6) */
+.bcard .bid{height:24px}   /* Bundle Card Default (v1.6): Info 144 space-between = Info / Top (Product Identity hug 24) + Pricing (stara cena pt 18, gap 4, red cene pt 2) */
+.bpricing{display:flex;flex-direction:column;gap:var(--space-4)}
+.bpricing .price-row{height:26px;box-sizing:content-box;padding-top:2px}
+
+/* v0.8.5 (i017 / i069): final hover card = Figma Commerce / Product Card / Short, State=Hover 3657:2374 (product list) and
+   State=Hover Home 5740:3246 (Home). 304 x 562: image 264, name 84, specs 68, price 54, Add + quantity 40, bottom row 36, padding 16.
+   The empty gap above the price is gone; the bottom row always takes 36 px (Home: "Get a quote" only). Figma shadow 0 12 32 12%.
+   Border drawn inside (as Figma stroke) so it does not take layout space. */
+.pmaxi{height:562px;border:0;box-shadow:0 12px 32px rgba(0,0,0,.12)}
+.pmaxi::after{content:"";position:absolute;inset:0;border:1px solid var(--border-subtle);border-radius:inherit;pointer-events:none;z-index:2}
+.pmaxi .pm-sp{display:none}
+.pmaxi .pm-buy{height:54px;padding:16px 16px 12px}
+.pm-foot{height:36px;flex:none;display:flex;align-items:center;justify-content:flex-end;gap:24px;padding:12px 16px 0}
+.pm-quote{color:var(--text-primary);white-space:pre}
+.pm-quote:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* v0.8.5 (i018 / i072): bundles rail with arrows = Figma R2G Bundles 5296:5723 (arrows on): 8 cards, 3 visible, step 1 card (328),
+   Prev 48 px left of the first card, Next 16 px right of the grid, y 176, same arrow as the product rails. */
+.r2g-rail{position:relative;flex:1 0 0;min-width:1px}
+.r2g-rail .r2g-cards{width:100%}
+/* v0.14.3 (i099, Figma Commerce / Product Card / Short State=Hover 3657:2374 + Hover Home 5740:3246): one canonical maxi, 508 high
+   (same as the Bundle maxi). Image 264 · identity 12 top · specs 2 lines (spec 1 / spec 2 · spec 3) · buying 12/8 · CTA 40 · footer 30 · bottom 8. */
+.pmaxi,.plc{height:508px;padding-bottom:8px}
+.pmaxi .pid,.plc .pid{padding-top:12px}
+.pmaxi .pid .nm,.plc .pid .nm{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:48px;max-height:48px;overflow:hidden}
+.pmaxi .pm-hl,.plc .pm-hl{display:block;height:42px;flex:none;padding:8px 16px 0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;line-height:16px}
+.pmaxi .pm-hl p:first-child,.plc .pm-hl p:first-child{display:block;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis}
+.pmaxi .pm-hl p:nth-child(n+2),.plc .pm-hl p:nth-child(n+2){display:inline}
+.pmaxi .pm-hl p:nth-child(n+3)::before,.plc .pm-hl p:nth-child(n+3)::before{content:" · "}
+.pmaxi .pm-sp,.plc .pm-sp{display:none}
+.pmaxi .pm-buy{height:44px;padding:12px 16px 8px}
+.pmaxi .pm-cta,.plc .pm-cta{height:40px;flex:none}
+.pm-foot,.plc-foot{height:30px;padding:6px 16px 0}
+/* v0.14.4 (i101, Figma Navigation / Arrow 5241:6615 State=Disabled): clearly inactive at the start / end of a rail */
+.rail-arrow[aria-disabled="true"]{background:var(--surface-subtle);border-color:transparent;color:var(--border-strong);box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.rail-arrow:not([aria-disabled="true"]):hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}

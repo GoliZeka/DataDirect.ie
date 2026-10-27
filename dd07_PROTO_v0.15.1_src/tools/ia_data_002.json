@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "source": "claude/dd07_IA_DATA_002_2026-10-20_17-30.json (project doc), copied 1/1 for the build",
+    "namingRule": "Page title, breadcrumb and listing label = the label used in the root menu (megaMenuLeftColumn). longName is kept only as optional description text.",
+    "routing": "#/<category-slug> = Parent page (C-PLP template), #/<category-slug>/<child-slug> = Child listing (PLP template). Third-level mega menu items are filter presets on the child listing, not pages."
+  },
+  "categoryRail": ["Computers","Displays","Accessories","Components & Power","Audiovisual","Print & POS","Networking"],
+  "megaMenuLeftColumn": ["Computers","Displays","Accessories","Components & Power","Audiovisual","Print & POS","Networking","Servers & Storage","Mobile & Tablets","Software"],
+  "megaMenuFooter": {"title": "Need help equipping your team?","actions": ["Book a Call","Request a Quote"],"note": "For volume orders, project pricing and procurement support"},
+  "categories": [
+    {"rail": "Computers","name": "Computers","eyebrow": "COMPUTERS","productCount": 346,
+      "children": [
+        {"name": "Laptops","productCount": 127,"description": "Business laptops for enterprise deployment, remote work and hybrid teams. Filter by processor, memory, storage and display to find the right specification.","filters": ["Brand","Screen Size","Processor","Memory","Storage","Operating System","Price Range","Availability"],"slug": "laptops"},
+        {"name": "Desktops & Workstations","slug": "desktops-workstations"}
+      ],
+      "megaMenu": {"Laptops": ["MacBooks","Business Laptops","Mobile Workstations","Gaming Laptops","Chromebooks"],"Desktops & Workstations": ["Desktop PCs","Small Form Factor PCs","All-in-One PCs","Tower PCs","Workstations","Thin Clients"],"Shop by Brand": ["Apple","HP","Dell","Lenovo","ASUS"],"links": ["View all Laptops >","View all Brands >"]},
+      "longName": "Laptops & Desktops","slug": "computers"},
+    {"rail": "Displays","name": "Displays","eyebrow": "DISPLAYS","description": "Professional display solutions for every workspace - from desktop monitors to large-format commercial signage and collaboration screens.",
+      "children": [
+        {"name": "Monitors","productCount": 84,"description": "Desktop monitors for productivity, design and collaboration. Filter by screen size, resolution, panel type and connectivity to find the right display.","filters": ["Brand","Screen Size","Resolution","Panel Type","Refresh Rate","Connectivity","Price Range","Availability"],"slug": "monitors"},
+        {"name": "Commercial Displays","productCount": 56,"description": "Large-format displays for digital signage, meeting rooms and commercial environments. Filter by screen size, resolution, brightness and mounting options.","filters": ["Brand","Screen Size","Resolution","Brightness","Mounting Type","Display Technology","Price Range","Availability"],"slug": "commercial-displays"}
+      ],
+      "megaMenu": {"Monitors": ["All Monitors","Business Monitors","USB-C & Docking Monitors","Ultrawide Monitors","Portable Monitors","Monitor Accessories"],"Commercial Displays": ["Large Format Displays","Digital Signage","Interactive Displays","Display Mounts & Stands"],"Shop by brand": ["Dell","LG","Samsung","HP","Lenovo","Philips"],"links": ["View all monitors and displays"]},
+      "longName": "Displays","slug": "displays"},
+    {"rail": "Accessories","name": "Accessories","eyebrow": "ACCESSORIES","productCount": 96,"description": "Docks, peripherals and workspace essentials to equip every desk and hybrid team.",
+      "children": [
+        {"name": "Connectivity","productCount": 42,"description": "Docking stations, hubs, cables and power for connected workspaces.","filters": ["Product Type","Connection Type","Ports","Power Delivery","Compatibility","Price Range","Availability"],"slug": "connectivity"},
+        {"name": "Peripherals","productCount": 36,"description": "Keyboards, mice, webcams and audio for everyday productivity.","filters": ["Product Type","Connection","Compatibility","Layout / Language","Ergonomics","Price Range","Availability"],"slug": "peripherals"},
+        {"name": "Workspace","productCount": 18,"description": "Monitor arms, stands, privacy and care accessories for ergonomic desks.","filters": ["Product Type","Screen Size Fit","Mount Type","Adjustability","Material","Price Range","Availability"],"slug": "workspace"}
+      ],
+      "megaMenu": {"Connectivity": ["Docking Stations","USB Hubs","Cables & Adapters","Chargers & Power Adapters","Laptop Bags & Cases"],"Peripherals": ["Keyboards","Mice & Trackballs","Webcams","Headsets","Speakers"],"Workspace": ["Monitor Arms & Stands","Privacy Accessories","Laptop Stands","Cleaning & Care"],"links": ["View all Accessories & Peripherals"]},
+      "longName": "Accessories & Peripherals","slug": "accessories"},
+    {"rail": "Components & Power","name": "Components & Power","eyebrow": "COMPONENTS & POWER","productCount": 118,"description": "Memory, storage, power protection and upgrade paths to extend the life of your fleet.",
+      "children": [
+        {"name": "Core Components","productCount": 54,"description": "Memory, storage, graphics, processors and motherboards for builds and repairs.","filters": ["Product Type","Capacity","Interface","Form Factor","Compatibility","Price Range","Availability"],"slug": "core-components"},
+        {"name": "Power & Protection","productCount": 38,"description": "Power supplies, UPS systems, batteries and cabling to keep devices running.","filters": ["Product Type","Wattage / VA","Battery Type","Connector","Runtime","Price Range","Availability"],"slug": "power-protection"},
+        {"name": "Upgrade Paths","productCount": 26,"description": "Tested upgrade kits for laptops, desktops and servers.","filters": ["Device Type","Upgrade Type","Compatible Brand","Capacity","Warranty","Price Range","Availability"],"slug": "upgrade-paths"}
+      ],
+      "megaMenu": {"Core Components": ["Memory","Internal Storage","Graphics Cards","Processors","Motherboards"],"Power & Protection": ["Power Supplies","UPS Systems","Batteries","Charging","Power Cables"],"Upgrade Paths": ["Laptop Upgrades","Desktop Upgrades","Server Upgrades"],"links": ["View all Components, Power & Upgrades"]},
+      "longName": "Components, Power & Upgrades","slug": "components-power"},
+    {"rail": "Print & POS","name": "Print & POS","eyebrow": "PRINT & POS","productCount": 88,"description": "Printers, scanners, labelling and point-of-sale hardware for offices, warehouses and retail.",
+      "children": [
+        {"name": "Printing","productCount": 52,"description": "Laser, inkjet and multifunction printers plus toner, ink and accessories.","filters": ["Brand","Printer Type","Print Technology","Colour","Print Speed","Connectivity","Price Range","Availability"],"slug": "printing"},
+        {"name": "Scanning & POS","productCount": 36,"description": "Document and barcode scanners, label and receipt printers and POS hardware.","filters": ["Brand","Product Type","Scanner Type","Connectivity","Media Width","Interface","Price Range","Availability"],"slug": "scanning-pos"}
+      ],
+      "megaMenu": {"Printing": ["Laser Printers","Inkjet Printers","Multifunction Printers","Color Printers","Black and White Printers","Toner & Ink","Printer Accessories"],"Scanning & POS": ["Document Scanners","Barcode Scanners","Label Printers","Receipt Printers","POS Hardware"],"Shop by Brand": ["HP","Epson","Brother","Canon","Zebra","Star Micronics","Honeywell"],"links": ["View all Printing & POS"]},
+      "longName": "Printing, Scanning & POS","slug": "print-pos"},
+    {"rail": "Networking","name": "Networking","eyebrow": "NETWORKING","productCount": 132,"description": "Switching, wireless, security and power protection for resilient business networks.",
+      "children": [
+        {"name": "Network Infrastructure","productCount": 58,"description": "Access points, switches, routers, firewalls and controllers.","filters": ["Product Type","Port Count","Speed","Managed / Unmanaged","PoE","Price Range","Availability"],"slug": "network-infrastructure"},
+        {"name": "Network Accessories","productCount": 46,"description": "Adapters, transceivers, cabling, racks and PoE injectors.","filters": ["Product Type","Connector","Speed","Length","Form Factor","Price Range","Availability"],"slug": "network-accessories"},
+        {"name": "Security & Continuity","productCount": 28,"description": "Security appliances, UPS protection and backup devices.","filters": ["Product Type","Throughput","Users Supported","Runtime","Form Factor","Price Range","Availability"],"slug": "security-continuity"}
+      ],
+      "megaMenu": {"Network Infrastructure": ["Wireless Access Points","Network Switches","Routers & Gateways","Firewalls","Network Controllers"],"Network Accessories": ["Network Adapters","SFP & Transceivers","Network Cables","Racks & Cabinets","Power over Ethernet"],"Security & Continuity": ["Security Appliances","UPS & Power Protection","Backup Devices"],"links": ["View all Networking & Security"]},
+      "longName": "Networking & Security","slug": "networking"},
+    {"rail": null,"name": "Servers & Storage","eyebrow": "SERVERS & STORAGE","productCount": 104,"description": "Servers, storage and infrastructure to run and protect business workloads.",
+      "children": [
+        {"name": "Servers","productCount": 40,"description": "Rack, tower and blade servers plus components, memory and processors.","filters": ["Form Factor","Processor","Memory","Drive Bays","Rack Units","Price Range","Availability"],"slug": "servers"},
+        {"name": "Storage & Backup","productCount": 38,"description": "NAS, SAN, external storage, backup appliances and media.","filters": ["Product Type","Capacity","Drive Bays","Interface","RAID Support","Price Range","Availability"],"slug": "storage-backup"},
+        {"name": "Infrastructure","productCount": 26,"description": "Racks, power protection and storage networking.","filters": ["Product Type","Rack Units","Power Rating","Connectivity","Form Factor","Price Range","Availability"],"slug": "infrastructure"}
+      ],
+      "megaMenu": {"Servers": ["Rack Servers","Tower Servers","Blade Servers","Server Components","Server Memory & Processors"],"Storage & Backup": ["NAS Storage","SAN Storage","External Storage","Backup Appliances","Backup Media"],"Infrastructure": ["Racks & Cabinets","UPS & Power Protection","Storage Networking"],"links": ["View all Servers, Storage & Backup"]},
+      "longName": "Servers, Storage & Backup","slug": "servers-storage"},
+    {"rail": null,"name": "Software","eyebrow": "SOFTWARE","description": "Business software, cybersecurity and licensing solutions for IT procurement.",
+      "children": [
+        {"name": "Business Software","description": "Productivity suites, collaboration tools and enterprise applications for business operations.","filters": ["Brand","Software Type","License Model","Platform","Price Range","Availability"],"slug": "business-software"},
+        {"name": "Security & Continuity","description": "Endpoint protection, backup software and disaster recovery solutions.","filters": ["Brand","Solution Type","Protection Level","Deployment","Price Range","Availability"],"slug": "security-continuity"},
+        {"name": "Licensing Support","description": "Volume licensing, subscription management and compliance tools.","filters": ["Brand","License Model","Vendor","Duration","Price Range","Availability"],"slug": "licensing-support"}
+      ],
+      "megaMenu": {"Business Software": ["All Business Software","Microsoft 365","Productivity Suites","Collaboration Tools","Operating Systems","Virtualisation"],"Security & Continuity": ["Endpoint Protection","Backup & Recovery","Firewall & VPN","Identity & Access Management"],"Licensing Support": ["Volume Licensing","License Management","Subscription Advisory","Renewal Services","Compliance & Audit","Vendor Programs"],"links": ["View all software & cloud"]},
+      "longName": "Software & Cloud","slug": "software"},
+    {"rail": null,"name": "Mobile & Tablets","eyebrow": "MOBILE & TABLETS","description": "Smartphones, tablets and rugged mobile devices for enterprise mobility and field operations.",
+      "children": [
+        {"name": "Mobile","description": "Business smartphones and rugged mobile devices for field teams and enterprise mobility.","filters": ["Brand","Operating System","Memory","Storage","Form Factor","Price Range","Availability"],"slug": "mobile"},
+        {"name": "Tablets","description": "Business tablets and 2-in-1 devices for mobile productivity, POS and field operations.","filters": ["Brand","Screen Size","Memory","Storage","Operating System","Price Range","Availability"],"slug": "tablets"}
+      ],
+      "megaMenu": {"Mobile": ["All Smartphones","Business Smartphones","Rugged Devices","5G Devices","Mobile Accessories"],"Tablets": ["Business Tablets","Consumer Tablets","Windows Tablets","iPad","Android Tablets"],"Shop by Brand": ["Apple","Samsung","Lenovo","HP","Microsoft"],"links": ["View all Mobile >","View all Tablets >","View all Mobile & Tablets >"]},
+      "longName": "Mobile & Tablets","slug": "mobile-tablets"},
+    {"rail": "Audiovisual","name": "Audiovisual","eyebrow": "AUDIOVISUAL","description": "Professional video conferencing, displays, audio and collaboration technology for modern workspaces.",
+      "children": [
+        {"name": "Video","description": "Webcams, video bars, conference cameras and display solutions for meetings and collaboration.","filters": ["Brand","Product Type","Resolution","Connectivity","Price Range","Availability"],"slug": "video"},
+        {"name": "Audio","description": "Headsets, speakerphones, microphones and audio accessories for calls, conferences and focused work.","filters": ["Brand","Product Type","Connection Type","Use Case","Price Range","Availability"],"slug": "audio"}
+      ],
+      "megaMenu": {"Video": ["All Video Equipment","Projectors","Displays & Screens","Cameras & Capture","Video Conferencing"],"Audio": ["All Audio Equipment","Headsets & Earbuds","Speakerphones","PA & Sound Systems","Microphones"],"Shop by Brand": ["Poly","Jabra","Logitech","Sennheiser","Epson"],"links": ["View all Video >","View all Audio >","View all Audiovisual >"]},
+      "longName": "Audiovisual","slug": "audiovisual"}
+  ],
+  "parentCategoryHelpStrip": {"title": "Need help selecting the right device?","text": "Talk to our team about compatible configurations, rollout requirements and procurement options.","action": "Book a Call"},
+  "availabilityStates": ["In Stock","Limited","Low Stock","To Order","On Request (Contact us for availability)"]
+}

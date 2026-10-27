@@ -1,0 +1,74 @@
+/* =========================================================
+   MINI CART: PLP / Mini Cart / Desktop 3275:30795 + Empty 5054:29962
+   v0.8.4: version layers merged into this module (computed styles verified identical).
+   History:
+   - v0.6 - Cart: mini cart 1/1 from masters PLP / Mini Cart / Desktop 3275:30795 + Empty 5054:29962 (30_PLP_SEARCH). Masters are not tokenized in Figma (radius 16/12, 13/18 px, Medium 14, shadow 0 8 32): values copied as they are. Placement 1/1 with PLP frames: x 1016 / y 64 in the 1440 frame (right 24 
+   - v0.6.1 - mini cart after Add: same x (Figma x 1016 in the 1440 frame), y follows the cursor (fixed, kept in viewport). No dim/blur.
+   - v0.8.1 (i062) - mini cart: "Proceed to checkout" = Button / Primary Theme=Checkout 5663:3626 fill (Brand/Gradient Checkout v3, 56.3deg) with dark label text/primary. Size and radius stay as the mini cart master (44 / 12), same as "View cart".
+   ========================================================= */
+.mc{position:absolute;left:calc(50% + 296px);top:64px;width:400px;display:flex;flex-direction:column;background:#fff;border:1px solid #F0F0F0;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.12);overflow:hidden;z-index:40;line-height:normal;text-align:left}
+.mc[hidden]{display:none}
+.mc-head{display:flex;gap:12px;align-items:flex-start;padding:20px 24px 12px}
+.mc-tb{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;gap:4px}
+.mc-title{font-size:16px;font-weight:600;color:#1A1A1A;white-space:pre}
+.mc-count{display:flex;gap:4px;font-size:13px;white-space:nowrap}
+.mc-cp{color:#7A7A7A}
+.mc-cn{font-weight:600;color:#1A1A1A}
+.mc-x{padding:0;border:0;background:none;font:inherit;font-size:16px;color:#666;line-height:normal;cursor:pointer}
+.mc-items{display:flex;flex-direction:column;padding:0 24px;max-height:324px;overflow-y:auto;overscroll-behavior:contain}   /* 4 rows (81) visible, then scroll (odobreno 19 okt) */
+.mc-row{flex:none;display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #F0F0F0}   /* DEMO / Cart Item 3274:1872 */
+.mc-thumb{flex:none;width:56px;height:56px;border-radius:8px;background:#E8E8E8}
+.mc-info{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;gap:2px}
+.mc-name{font-size:13px;font-weight:500;color:#1A1A1A;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mc-sku,.mc-qty{font-size:12px;color:#7A7A7A;white-space:nowrap}
+.mc-price{flex:none;display:flex;flex-direction:column;gap:2px;align-items:flex-end;white-space:nowrap}
+.mc-amt{font-size:13px;font-weight:600;color:#1A1A1A}
+.mc-empty{display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px 24px 8px}
+.mc-ic{width:72px;height:72px;border-radius:40px;background:#FEECF6;display:flex;align-items:center;justify-content:center}
+.mc-ic svg{display:block}
+.mc-et{font-size:18px;font-weight:600;color:#1A1A1A;white-space:nowrap}
+.mc-eb{width:280px;font-size:13px;line-height:18px;color:#7A7A7A;text-align:center}
+.mc-foot{display:flex;flex-direction:column;gap:10px;padding:16px 24px 24px}
+.mc-btn{display:flex;height:44px;align-items:center;justify-content:center;border-radius:12px;font-size:14px;white-space:nowrap;cursor:pointer}
+.mc-btn.primary{background-image:linear-gradient(13.939deg,#4E43AD 16.067%,#FF00A1 63.223%);color:#fff;font-weight:600}
+.mc .mc-empty,.mc .foot-empty{display:none}
+.mc.is-empty .mc-empty,.mc.is-empty .foot-empty{display:flex}
+.mc.is-empty .mc-items,.mc.is-empty .foot-filled{display:none}
+.mc.is-float{position:fixed;top:auto;left:auto;bottom:24px;right:max(24px, calc((100% - var(--frame)) / 2 + 24px))}   /* v0.6.2 - mini cart after Add: fixed bottom-right. Right = 24 from the screen, or 24 inside the 1440 frame on wider screens. */
+@media (min-width: 2336px){
+  .mc.is-float{right:auto;left:calc(50% + var(--frame) / 2 + 24px)}
+}   /* v0.6.3 - mini cart after Add: when there is room right of the 1440 frame (400 + 24 gap + 24 screen margin on each side, i.e. screen >= 2336), it bleeds out of the frame: left = frame right edge + 24, bottom 24. Otherwise v0.6.2 position. */
+/* v0.8.5 (i068): mini cart buttons 1/1 with Button / Primary 5677:3219 (pill 48, Type/Body/SemiBold, padding 12/24), as in master 3275:30795.
+   View cart / Start shopping = Theme=Brand (Brand/Gradient 90deg #4E43AD -> #FF00A1, white). Proceed to checkout = Theme=Checkout (yellow, dark text).
+   Quick Order (empty state) stays the outlined 44 px box of the master (was turned yellow by mistake in v0.8.1). */
+.mc-btn.primary,.mc-btn.checkout{height:48px;padding:12px 24px;border-radius:var(--radius-pill);font:600 16px/24px var(--font)}
+.mc-btn.primary{background-image:linear-gradient(90deg,#4E43AD 0%,#FF00A1 100%);color:var(--text-inverse)}
+.mc-btn.checkout{background:linear-gradient(90deg,#F7E9B8 0%,#FAD56A 100%);border:0;color:var(--text-primary)}   /* v0.9 (i079): Button / Primary Theme=Checkout 5663:3626 = Stepper/Active 3, left to right */
+
+/* v0.12 (i082): focus blur behind the floating mini card on the first item: dim + blur fade in 200 ms, hold 300 ms, fade out 500 ms.
+   Sits under the card (z 39 vs 40, inside the header layer), never blocks clicks. Figma: DEV NOTE next to Overlay / Mini Cart. */
+.mc-flash{position:fixed;inset:0;z-index:39;pointer-events:none;opacity:0;background:var(--dim);-webkit-backdrop-filter:blur(var(--overlay-blur));backdrop-filter:blur(var(--overlay-blur))}
+.mc-flash.is-on{animation:mc-flash 1000ms ease-out}
+@keyframes mc-flash{0%{opacity:0}20%{opacity:1}50%{opacity:1}100%{opacity:0}}
+/* i083: auto close after 5 s without hover = fade out 300 ms */
+.mc{transition:opacity 300ms ease-out}
+.mc.is-leaving{opacity:0}
+
+.mc-thumb{overflow:hidden;display:flex;align-items:center;justify-content:center}
+.mc-thumb img{width:100%;height:100%;object-fit:contain}   /* v0.12 */
+
+/* v0.13.1: ✕ per row (Cart / Line Item Remove, 32 circle) + Clear cart link right of the count (Caption/SemiBold text/secondary, underline) */
+.mc-rm{flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--border-control);background:var(--surface-page);color:var(--text-secondary);font:400 16px/24px var(--font);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.mc-rm:hover{background:var(--surface-subtle);color:var(--text-primary)}
+.mc-clear{margin-left:8px;padding:0;border:0;background:none;font:600 12px/16px var(--font);color:var(--text-secondary);text-decoration:underline;cursor:pointer}
+.mc-clear:hover{color:var(--text-primary)}
+.mc.is-empty .mc-clear{display:none}
+
+/* v0.13.2 (i089): Quantity Counter Size=Mini 5831:3385 under the row price: 80 x 26, padding 2, gap 2, radius 8, controls 22 radius 6, icons 12, value Caption/SemiBold 12 */
+.qty.qty-m{padding:2px;gap:2px;border-radius:8px;height:26px;box-sizing:border-box}
+.qty-m .qty-btn{width:22px;height:22px;border-radius:6px;padding:0}
+.qty-m input.qty-val{width:28px;height:22px;font:600 12px/16px var(--font)}
+.mc-price{gap:6px}
+.mc .qhint{display:none}   /* no card hints inside the mini cart (it clips them) */
+/* v0.14 (i090): small remove in lists (Cart / Line Item Remove 24, ✕ 12); popup Close stays 40 */
+.mc-rm{width:24px;height:24px;font-size:12px;line-height:16px}

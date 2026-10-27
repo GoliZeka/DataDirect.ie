@@ -1,0 +1,12 @@
+/* =========================================================
+   BASE
+   v0.8.4: version layers merged into this module (computed styles verified identical).
+   ========================================================= */
+/* ========================================================= BASE ========================================================= */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--surface-page)}
+body{font-family:var(--font);color:var(--text-primary);min-width:var(--frame);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+img,svg{display:block}
+p{margin:0}

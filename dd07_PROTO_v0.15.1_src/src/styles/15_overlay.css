@@ -1,0 +1,8 @@
+/* =========================================================
+   OVERLAY: shared dim 5108:36678 + blur for every popup
+   v0.8.4: version layers merged into this module (computed styles verified identical).
+   ========================================================= */
+/* Overlay (shared by all popups: search, mini cart, ...) = Dim 5108:36678 + background blur */
+.dim{display:none;position:absolute;left:0;right:0;top:104px;bottom:0;background:var(--dim);-webkit-backdrop-filter:blur(var(--overlay-blur));backdrop-filter:blur(var(--overlay-blur));z-index:20}
+body.overlay-open .dim{display:block}
+body{position:relative}

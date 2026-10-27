@@ -1,0 +1,234 @@
+/* =========================================================
+   PLP (v0.9, m04 - i030 / i031 / i032): Parent category + product listing
+   Figma: PLP / Page Template / Desktop 5764:13872 (30_PLP_SEARCH); Computers (Parent) 5773:18196, Laptops Default 5764:14455,
+   Filtered 5764:15219. Rows on layout/gutter 76 (content 1288), grid 8 columns: sidebar 304 + 3 x 304 (gutter 24) / parent 4 x 304.
+   ========================================================= */
+.plp-row{width:var(--container);margin:0 auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* PLP / Breadcrumbs / Desktop 2800:10373: 48 high, Caption, separators 16, current = Caption/SemiBold text/primary */
+.plp-crumbs{height:48px;display:flex;align-items:center;color:var(--text-muted)}
+.plp-crumbs a:hover{color:var(--text-primary);text-decoration:underline;text-underline-offset:3px}
+.plp-crumbs .sep{width:16px;height:16px;display:flex;align-items:center;justify-content:center}
+.plp-crumbs .sep svg{width:12px;height:12px}
+.plp-crumbs [aria-current]{color:var(--text-primary)}
+
+/* PLP / Context Banner / Desktop: padding 24 / 8, gap 16; title H1 + count Small text/secondary (gap 12, baseline); description Small text/muted, 700 */
+.plp-banner{display:flex;flex-direction:column;gap:var(--space-16);padding:var(--space-24) 0 var(--space-8)}
+.plp-ttl{display:flex;align-items:baseline;gap:var(--space-12)}
+.plp-count{color:var(--text-secondary)}
+.plp-desc{max-width:700px;color:var(--text-muted)}
+
+/* C-PLP / Category Badge (Child Categories 5773:5434): padding 16 / 24, badges gap 48, circle 176 (placeholder), label Title */
+.plp-kids{display:flex;justify-content:center;gap:var(--space-48);padding:var(--space-16) 0 var(--space-24)}
+.cbadge{display:flex;flex-direction:column;align-items:center;gap:20px;min-width:240px;color:var(--text-primary)}
+.cb-img{width:176px;height:176px;border-radius:50%;background:#E8E8E8;border:10px solid #BDAFAF;transition:transform 333ms ease-out}
+.cbadge:nth-child(2n) .cb-img{border-color:#F4EEDD}
+.cbadge:hover .cb-img,.cbadge:focus-visible .cb-img{transform:scale(1.04)}   /* samo u kodu: Figma badge has no hover yet */
+
+/* Active Filters Bar 2929:12237: padding bottom 20, gap 8; PLP / Filter Chip Type=Facet: 34, pill, border/strong, Small/SemiBold + ✕ Caption */
+.plp-afb{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-8);padding-bottom:20px}
+.fchip{height:34px;display:inline-flex;align-items:center;gap:var(--space-8);padding:6px 10px 6px 14px;border-radius:var(--radius-pill);background:var(--surface-page);border:1px solid var(--border-strong);color:var(--text-primary);white-space:nowrap}
+.fchip:hover{border-color:var(--text-muted)}
+.fclear{color:var(--text-primary);padding:0 6px}
+.fclear:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* PLP / Toolbar / Desktop (Controls=Full): 48, right aligned, gap 16; Sort Control (label + 230 x 48 pill); View Toggle 102 x 48 */
+.plp-toolbar{height:48px;display:flex;justify-content:flex-end}
+.plp-tb-r{display:flex;align-items:center;gap:var(--space-16)}
+.plp-sort{display:flex;align-items:center;gap:var(--space-12);color:var(--text-secondary)}
+.plp-dd{position:relative;width:230px;height:48px}
+.plp-dd select{appearance:none;-webkit-appearance:none;width:100%;height:100%;padding:0 36px 0 20px;border:1px solid var(--border-subtle);border-radius:var(--radius-lg);background:var(--surface-page);color:var(--text-primary);cursor:pointer;outline:none}
+.plp-dd select:focus-visible{border-color:var(--brand-purple)}
+.plp-dd .chev{position:absolute;right:16px;top:16px;color:var(--text-secondary);pointer-events:none}
+.plp-view{display:flex;align-items:center;height:48px;padding:2px;border:1px solid var(--border-subtle);border-radius:var(--radius-lg);background:var(--surface-subtle)}
+.plp-view button{width:48px;height:42px;border-radius:var(--radius-lg);color:var(--text-muted)}
+.plp-view button.is-on{color:var(--text-primary)}
+.plp-view button[aria-disabled="true"]{cursor:default}
+
+/* Main Content Layout: padding 24 / 48, gap 24; Sidebar Stack gap 16; Product Container gap 24 */
+.plp-main{display:flex;align-items:flex-start;gap:var(--space-24);padding:var(--space-24) 0 var(--space-48)}
+.plp-res{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;gap:var(--space-24)}
+.plp-grid{display:grid;grid-template-columns:repeat(3,304px);gap:var(--space-24)}
+.plp-main.is-parent .plp-grid{grid-template-columns:repeat(4,304px)}
+
+/* Filter Sidebar 2800:10435 (304, padding 16, gap 16, radius 24, border/subtle) */
+.plp-side{width:304px;flex:none;display:flex;flex-direction:column;gap:var(--space-16)}
+.fbox,.qobox{display:flex;flex-direction:column;gap:var(--space-16);padding:var(--space-16);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);background:var(--surface-page)}
+.fbox-l{color:var(--text-secondary)}
+.fgrp{display:flex;flex-direction:column;gap:var(--space-16)}
+.fdiv{height:1px;border:0;background:var(--border-subtle)}
+/* Filter / Accordion: header 5786:6767 (40, Small/SemiBold, count pill surface/tint-pink + brand/pink Caption/SemiBold); options gap 4 */
+.facc{display:flex;flex-direction:column;gap:var(--space-4)}
+.facc-h{height:40px;display:flex;align-items:center;gap:var(--space-8);width:100%;text-align:left;color:#000}
+.facc-n{min-width:21px;height:20px;padding:2px 8px;border-radius:var(--radius-pill);background:var(--surface-tint-pink);color:var(--brand-pink);display:inline-flex;align-items:center;justify-content:center}
+.facc-b{display:none;flex-direction:column}
+.facc.is-open .facc-b{display:flex}
+/* Form / Checkbox: row 28 (padding 6), box 16 radius 4 border/strong 1.5; checked = text/muted fill + white ✓; count Caption text/muted */
+.fcb{display:flex;align-items:center;gap:var(--space-8);padding:6px 0;cursor:pointer;color:var(--text-primary)}
+.fcb input,.plc-cmp input{position:absolute;opacity:0;width:1px;height:1px}
+.fcb .box,.plc-cmp .box{width:16px;height:16px;flex:none;border-radius:4px;border:1.5px solid var(--border-strong);background:var(--surface-page);display:flex;align-items:center;justify-content:center}
+.fcb.is-on .box{background:var(--text-muted);border-color:var(--text-muted)}
+.fcb.is-on .box::after,.plc-cmp input:checked + .box::after{content:"✓";color:var(--text-inverse);font:600 12px/16px var(--font)}
+.fcb input:focus-visible + .box,.plc-cmp input:focus-visible + .box{outline:2px solid var(--brand-purple);outline-offset:2px}
+.fcb .lbl{flex:1 0 0;min-width:1px}
+.fcb .n{color:var(--text-muted)}
+.fcb.is-zero{color:var(--text-muted);cursor:default}
+.fcb:not(.is-on):hover .box{border-color:var(--text-muted)}
+
+/* PLP / Sidebar / Quick Order 2877:11763: heading Body/SemiBold; SKU Row gap 8 = Form / Input 5680:3354 (48, radius 12, surface/tint-lilac) + Add to Cart Multi full width */
+.qo-row{display:flex;flex-direction:column;gap:var(--space-8)}
+.qo-in{height:48px;padding:0 16px;border:0;border-radius:var(--radius-md);background:var(--surface-tint-lilac);color:var(--text-primary);outline:none}
+.qo-in::placeholder{color:var(--text-muted)}
+.qo-in:focus-visible{box-shadow:inset 0 0 0 1.5px var(--brand-purple)}
+.qo-add{width:100%}
+
+/* Commerce / Product Card / Grid (State=Default, Compare=Show): 304 x 576, radius 32, border/subtle; image 264 surface/subtle;
+   identity 84, highlights 68, spacer (fill), buying data 36 (price row bottom aligned, i081), CTA 40, compare row 36, padding bottom 16 */
+.plc{position:relative;width:304px;height:576px;display:flex;flex-direction:column;padding-bottom:var(--space-16);background:var(--surface-page);border-radius:var(--radius-xl);overflow:hidden}
+.plc::after{content:"";position:absolute;inset:0;border:1px solid var(--border-subtle);border-radius:inherit;pointer-events:none}
+.plc-img{position:relative;display:block;height:264px;flex:none;background:var(--surface-subtle);overflow:hidden}
+.plc-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}   /* Commerce / Product Image: fill */
+.plc .pid .nm{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:48px}
+.plc .pid .nm:hover{text-decoration:underline;text-underline-offset:3px}
+.plc .pm-sp{display:block}
+.plc-buy{flex:none;padding:0 16px 12px}
+.plc-buy .price-row{align-items:flex-end;gap:8px}
+.plc-price{display:flex;flex-direction:column;gap:2px}
+.plc-price .was{color:var(--text-muted);text-decoration:line-through}
+.plc-price .price{align-items:baseline}
+.plc .pm-stock{height:24px}
+.stk{display:flex;align-items:center;gap:6px;padding:4px 0;white-space:nowrap}
+.stk i{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+.stk.is-ok{color:var(--status-success)}
+.stk.is-low{color:var(--status-warning)}
+.stk.is-order{color:var(--status-info)}
+.stk.is-req{color:var(--text-muted)}
+.plc .pm-cta{flex:none}
+/* Compare Wrapper: padding 12 / 16, space between; Compare Toggle (box 16 radius 3, text/secondary 1.5), Save to List, Get a quote */
+.plc-foot{height:36px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:12px 16px 0}
+.plc-cmp{position:relative;display:flex;align-items:center;gap:6px;padding:4px 0;color:var(--text-secondary);cursor:pointer}
+.plc-cmp .box{border-radius:3px;border-color:var(--text-secondary)}
+.plc-cmp input:checked + .box{background:var(--text-secondary)}
+.plc-save{display:flex;align-items:center;gap:4px;color:var(--text-secondary)}
+.plc-save:hover,.plc-cmp:hover{color:var(--text-primary)}
+.plc-save.is-on{color:var(--brand-purple)}
+.plc-save.is-on path{fill:currentColor}
+
+/* Pagination Block: padding top 32, gap 16; buttons 32 radius 6 (current surface/inverse), info 13 */
+.plp-pager{display:flex;flex-direction:column;align-items:center;gap:var(--space-16);padding-top:var(--space-32)}
+.pg-ctrl[hidden]{display:none}
+.pg-ctrl{display:flex;align-items:center;gap:var(--space-8)}
+.pg-b{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:var(--surface-page);border:1px solid var(--border-control);font:400 13px/16px var(--font);color:var(--text-primary)}
+.pg-b[aria-label]{font-size:14px}
+.pg-b.is-on{background:var(--surface-inverse);border-color:var(--surface-inverse);color:var(--text-inverse);font-weight:600}
+.pg-b:not(.is-on):not(:disabled):hover{border-color:var(--text-muted)}
+.pg-b:disabled{color:var(--text-muted);cursor:default}
+.pg-gap{font:400 13px/16px var(--font);color:#A6A6A6}
+.pg-info{font:400 13px/16px var(--font);color:var(--text-muted)}   /* v0.13.3 (i046): #8A8A8A -> text/muted for AA contrast */
+
+/* samo u kodu: empty result inside the listing (the full No Results screen 5764:16773 is i033) */
+.plp-empty{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:48px 0}
+
+/* CTA Band on PLP pages: no tuck strip (the white row above is flat) */
+#pgView .sec-cta{box-shadow:none}
+
+/* ===== v0.9 (i033) Search results 5764:15995 / No results 5764:16773 ===== */
+/* PLP / Filter Chip Type=Primary: the search query, surface/inverse + text/inverse (chip look TBD, i080) */
+.fchip.is-primary{height:32px;background:var(--surface-inverse);border-color:var(--surface-inverse);color:var(--text-inverse)}
+.fchip.is-primary:hover{border-color:var(--surface-inverse);opacity:.9}
+/* v0.14.2 (i080, Figma PLP / Filter Chip 2929:12236, option 2 "labelled, quiet"): group label + value, quiet fills */
+.fchip{background:var(--surface-subtle);border-color:var(--surface-subtle)}
+.fchip:hover{border-color:var(--border-strong)}
+.fchip .fc-pre{color:var(--text-secondary)}
+.fchip [aria-hidden]{color:var(--text-secondary)}
+.fchip.is-primary{background:var(--surface-tint-warm);border-color:var(--border-selected);color:var(--text-primary)}
+.fchip.is-primary:hover{border-color:var(--border-selected);opacity:.9}
+.fchip.is-primary [aria-hidden]{color:var(--text-primary)}
+/* No Results Content: padding 48 / 80, gap 32; buttons 40 radius 6, Medium 14; Sourcing Support gap 8 */
+.plp-none{display:flex;flex-direction:column;gap:var(--space-32);padding:72px 0 128px}
+.nr-act{display:flex;gap:var(--space-16)}
+.nr-btn{height:40px;padding:10px 20px;border:1px solid #C7C7C7;border-radius:6px;color:#333;background:var(--surface-page)}
+.nr-btn:hover{border-color:var(--text-muted)}
+.nr-help{display:flex;flex-direction:column;gap:var(--space-8)}
+.nr-help p:first-child{color:#333}
+.nr-help .t-caption{color:#737373}
+.nr-help a{text-decoration:underline;text-underline-offset:2px}
+.nr-help a:hover{color:var(--text-primary)}
+
+/* ===== v0.9 (i034) Compare Tray 5764:17560 (PLP / Compare Tray / Desktop): 120, padding 16 / 76, border/subtle, shadow 0 -2 8;
+   Selection Item 260 x 72 (radius 8, surface/subtle, border/subtle; empty = dashed), actions: count + Compare Products (#F0A1D0) + Clear all.
+   Look stays as in Figma; the designer refines it later. ===== */
+.ctray{background:var(--surface-page);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);box-shadow:0 -2px 8px rgba(0,0,0,.06)}
+.ct-in{min-height:120px;display:flex;align-items:center;justify-content:space-between;gap:var(--space-24);padding:16px 0}
+.ct-sel{flex:1 1 0;min-width:0;display:flex;align-items:center;gap:var(--space-12)}
+.ct-item{flex:1 1 0;min-width:0;max-width:260px;height:72px;display:flex;align-items:center;gap:var(--space-12);padding:10px 12px;border-radius:var(--radius-sm);background:var(--surface-subtle);border:1px solid var(--border-subtle)}
+.ct-item.is-empty{justify-content:center;background:transparent;border-style:dashed;color:var(--text-muted)}
+.ct-thumb{width:48px;height:48px;flex:none;border-radius:var(--radius-sm);background:var(--surface-page);overflow:hidden}
+.ct-thumb img{width:100%;height:100%;object-fit:cover}
+.ct-info{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;gap:2px}
+.ct-brand{color:var(--text-secondary)}
+.ct-name{color:var(--text-primary);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ct-x{width:20px;flex:none;color:var(--text-muted)}
+.ct-x:hover{color:var(--text-primary)}
+.ct-act{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-8)}
+.ct-n{color:var(--text-secondary);white-space:nowrap}
+.ct-n.is-max{color:var(--status-error)}
+.ct-row{display:flex;align-items:center;gap:var(--space-12)}
+.ct-go{height:40px;display:flex;white-space:nowrap;align-items:center;padding:10px 20px;border-radius:var(--radius-sm);background:#F0A1D0;color:var(--text-inverse)}
+.ct-go:not(.is-off):hover{background:var(--brand-pink)}
+.ct-go.is-off{opacity:.5;cursor:default}
+.ct-clear{color:var(--text-secondary);white-space:nowrap}
+.ct-clear:hover{color:var(--text-primary);text-decoration:underline}
+.ct-slot:not(:empty){margin-bottom:var(--space-24)}
+
+/* ===== v0.9 (i034) Product Comparison 5769:17230: header (padding 16 / 24, gap 8), label column 200 + product columns,
+   section rows SemiBold (padding 20 / 8), value rows with dividers, last row Add 132 + Get a quote ===== */
+.cx{padding:var(--space-24) 0 var(--space-48)}
+.cx-top{display:flex;flex-direction:column;gap:var(--space-8);padding:16px 0 24px}
+.cx-t{display:flex;flex-direction:column;padding-bottom:var(--space-48)}
+.cx-row{display:grid;grid-template-columns:200px repeat(var(--cx-n),minmax(0,1fr));border-bottom:1px solid var(--border-control)}
+.cx-l{padding:12px 0;color:var(--text-secondary)}
+.cx-v{padding:12px 16px 12px 0;color:var(--text-primary)}
+.cx-sec{padding:20px 0 8px;border-bottom:1px solid var(--border-control)}
+.cx-heads{border-bottom:1px solid #E6E6E6}
+.cx-h{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:16px}
+.cx-img{width:80px;height:80px;border-radius:var(--radius-sm);background:var(--surface-subtle);overflow:hidden;margin-bottom:4px}
+.cx-img img{width:100%;height:100%;object-fit:cover}
+.cx-brand,.cx-muted{color:var(--text-muted)}
+.cx-name:hover{text-decoration:underline;text-underline-offset:3px}
+.cx-price{margin-top:4px}
+.cx-h .stk{padding:0}
+.cx-rm{color:var(--text-muted);text-decoration:underline;text-underline-offset:2px}
+.cx-rm:hover{color:var(--text-primary)}
+.cx-cta{border-bottom:0}
+.cx-cta .cx-v{display:flex;align-items:center;gap:var(--space-16);padding-top:16px}
+
+/* v0.12: photo inside the Child Categories circle (first product of the list) */
+.cb-img{overflow:hidden;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+.cb-img img{width:78%;height:78%;object-fit:contain}
+/* v0.14.3 (i099): PLP card = the canonical maxi (rules in 20_home-sections); the previous price sits on the brand line */
+.plc{height:508px;padding-bottom:8px}.plc .pm-sp{display:none}.plc-foot{height:30px;padding:6px 16px 0}
+.plc-buy{height:44px;padding:12px 16px 8px}
+.plc .pid .brand{display:flex;justify-content:space-between;gap:8px}
+.plc .pid .brand .was{color:var(--text-muted);text-decoration:line-through}
+/* v0.14.4 (i100, Figma PLP / Product Row / Desktop 2363:4803): list view rows; Save removed (Compare stays) */
+.plp-grid.is-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--border-subtle)}
+.plr{display:grid;grid-template-columns:112px minmax(0,1fr) 168px 132px 176px 96px;gap:12px;align-items:start;padding:12px 0;border-bottom:1px solid var(--border-subtle)}
+.plr-img{position:relative;display:block;width:112px;height:112px;border-radius:var(--radius-md);background:var(--surface-subtle);overflow:hidden}
+.plr-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.plr-id{display:flex;flex-direction:column;gap:3px;min-width:0}
+.plr-brand,.plr-meta{color:var(--text-secondary)}
+.plr-nm{color:var(--text-primary);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.plr-nm:hover{text-decoration:underline;text-underline-offset:3px}
+.plr-meta{display:flex;gap:16px;flex-wrap:wrap}
+.plr-spec,.plr-av{display:flex;flex-direction:column;gap:3px;padding-top:18px;color:var(--text-secondary);min-width:0}
+.plr-spec p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.plr-av .stk{display:flex;align-items:center;gap:6px}
+.plr-act{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.plr-was{color:var(--text-muted);text-decoration:line-through}
+.plr-price{color:var(--text-primary)}.plr-price .t-caption{color:var(--text-secondary)}
+.plr-cta{display:flex;flex-direction:column;gap:6px;width:176px}
+.plr-cta .pm-add{width:100%;height:36px}
+.plr-cta .qty{width:100%}
+.plr-ut{display:flex;justify-content:flex-end;padding-top:18px;padding-left:12px;border-left:1px solid var(--border-control);align-self:stretch}

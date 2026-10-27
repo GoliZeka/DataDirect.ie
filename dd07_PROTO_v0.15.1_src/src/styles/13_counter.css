@@ -1,0 +1,40 @@
+/* =========================================================
+   QUANTITY COUNTER 219:94 + card-state hints (v0.8.3, samo u kodu)
+   v0.8.4: version layers merged into this module (computed styles verified identical).
+   History:
+   - v0.5: Product rails (step 328 = card 304 + gap 24, 777ms ease-out) + hover maxi card (5332:5753)
+   - v0.5.1: Commerce / Quantity Counter 219:94, live (states Default / Min / Max / Focus / Error)
+   - ===== v0.5.6 (Final v1.5 5426:8394) =====
+   - v0.8.3 (i013) - card states, samo u kodu (Figma has no Added / Volume Nudge / Stock Limit states yet). Tokens only. Hint bubble: above the counter, right aligned (below it in the search panel, where the top row would clip it), small arrow. Nudge = surface/inverse + accent/yellow link (as the What's 
+   ========================================================= */
+/* Commerce / Quantity Counter 219:94 (Compact) */
+.qty{display:flex;align-items:center;justify-content:center;padding:var(--space-4);background:var(--surface-page);border:1px solid var(--border-control);border-radius:var(--radius-md)}
+.qty-btn{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-sm);color:var(--text-primary)}
+.qty-btn.inc{background:var(--surface-subtle)}
+.qty-btn.is-min{color:var(--text-muted);cursor:default}
+.qty-val{width:32px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--text-primary)}
+.qty-d .qty-btn{width:32px;height:32px}
+.qty-d .qty-val{width:52px;height:32px}
+.qty .qty-btn{background:var(--surface-subtle);color:var(--text-primary);cursor:pointer}
+.qty .qty-btn.is-min,.qty .qty-btn.is-max{background:transparent;color:var(--text-muted);cursor:default}
+.qty input.qty-val{border:0;outline:0;padding:0;margin:0;background:transparent;text-align:center;font:600 14px/20px var(--font);color:var(--text-primary);caret-color:var(--text-primary);-moz-appearance:textfield}
+.qty input.qty-val::-webkit-outer-spin-button,.qty input.qty-val::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.qty.is-focus{border-color:var(--brand-purple);box-shadow:inset 0 0 0 .5px var(--brand-purple)}   /* 1.5px stroke, no layout shift */
+.qty.is-focus .qty-btn{background:var(--surface-subtle);color:var(--text-primary)}
+.qty.is-error{border-color:var(--status-error);box-shadow:inset 0 0 0 .5px var(--status-error)}
+.qty.is-error input.qty-val{color:var(--status-error)}
+.qty.qty-d{box-sizing:border-box;height:40px}
+
+/* Commerce / Quantity Counter 219:94 (Compact) */
+.qty{gap:var(--space-4);flex:none;position:relative}
+.qhint{position:absolute;right:0;bottom:calc(100% + 8px);z-index:5;display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:var(--radius-sm);font:400 12px/16px var(--font);white-space:nowrap;box-shadow:var(--elev-overlay);animation:qh-in 150ms ease-out}
+.qhint[hidden]{display:none}
+.qhint::after{content:"";position:absolute;right:18px;top:100%;border:5px solid transparent;border-top-color:inherit}
+.qhint.is-nudge{background:var(--surface-inverse);color:var(--text-inverse);border-color:var(--surface-inverse)}
+.qhint.is-nudge::after{border-top-color:var(--surface-inverse)}
+.qhint.is-nudge a{color:var(--accent-yellow);font-weight:600}
+.qhint.is-nudge a:hover{text-decoration:underline}
+.qhint.is-limit{background:var(--status-error);color:var(--text-inverse)}
+.qhint.is-limit::after{border-top-color:var(--status-error)}
+@keyframes qh-in{from{opacity:0;transform:translateY(2px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.qhint{animation:none}}

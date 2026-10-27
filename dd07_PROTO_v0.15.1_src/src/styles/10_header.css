@@ -1,0 +1,44 @@
+/* =========================================================
+   HEADER 5048:37194 (bar 64 + category rail 40)
+   v0.8.4: version layers merged into this module (computed styles verified identical).
+   History:
+   - v0.3.2: header + footer content locked to the 1288 grid inside the 1440 frame; backgrounds stay full width
+   - v0.6 - Cart: mini cart 1/1 from masters PLP / Mini Cart / Desktop 3275:30795 + Empty 5054:29962 (30_PLP_SEARCH). Masters are not tokenized in Figma (radius 16/12, 13/18 px, Medium 14, shadow 0 8 32): values copied as they are. Placement 1/1 with PLP frames: x 1016 / y 64 in the 1440 frame (right 24 
+   ========================================================= */
+/* ========================================================= HEADER 5048:37194 (64 + rail 40 = 104) ========================================================= */
+.gh{display:flex;flex-direction:column;align-items:center;width:100%}
+.gh-bar{width:100%;height:64px;display:flex;align-items:center;padding:0 var(--layout-gutter);background:var(--surface-page);border-bottom:1px solid var(--border-control)}
+.gh-logo{width:160px;height:40px;display:flex;align-items:center;padding-left:8px;flex:none}
+.gh-logo .mark{position:relative;width:118px;height:33px}
+.gh-logo .mark svg{position:absolute}
+.gh-logo .mark .lg-logo{left:0;top:0;width:32.04px;height:32.078px}
+.gh-logo .mark .lg-type{left:38.4px;top:9.68px;width:79.603px;height:12.214px}
+.gh-nav{flex:1 0 0;min-width:1px;display:flex;align-items:center;justify-content:center;gap:var(--space-8);padding:0 32px}
+.nav-item{height:40px;display:flex;align-items:center;justify-content:center;padding:0 var(--space-16);border-radius:var(--radius-md);background:var(--surface-page);color:var(--text-secondary);white-space:nowrap}
+.nav-item:hover{background:#EEEEEE;color:var(--text-muted)}
+.nav-item.is-active{background:transparent;color:#92567E}
+.gh-actions{display:flex;align-items:center;gap:8px;height:40px;flex:none}
+.search-pill{width:253px;height:40px;display:flex;align-items:center;gap:var(--space-8);padding:0 var(--space-8) 0 var(--space-16);background:var(--surface-tint-lilac);border:1px solid var(--border-control);border-radius:var(--radius-md);color:var(--text-secondary)}
+.search-pill .ph{display:inline-block;transform:skewX(-10deg) scaleY(.98);white-space:nowrap}
+.btn-call{height:40px;display:flex;align-items:center;gap:6px;padding:0 12px;background:var(--surface-page);border:1px solid var(--border-control);border-radius:var(--radius-md);color:var(--text-secondary);white-space:nowrap}
+.cart-btn{position:relative;display:flex;align-items:center;gap:8px;padding:9px 13px 9px 15px;border-radius:var(--radius-md);color:var(--text-inverse)}
+.cart-btn::before{content:"";position:absolute;inset:0;border:1px solid var(--border-control);border-radius:var(--radius-md);background:var(--grad-cart-empty);z-index:-1}
+.cart-btn.is-filled::before{background:var(--grad-cart-filled)}
+.cart-btn .ic{width:22px;height:22px;flex:none}
+.cart-btn .badge{display:flex;align-items:center;justify-content:center;padding:1px 6px;border-radius:10px;background:var(--border-control);color:var(--text-secondary)}
+.cart-btn.is-filled .badge{background:var(--surface-page)}
+/* v0.14.2 (i094, Figma Navigation / Cart Button 5052:4559): empty state = outline like Book a Call (AA). Filled state unchanged. */
+.cart-btn{color:var(--text-primary)}
+.cart-btn::before{background:var(--surface-page);border-color:var(--border-strong)}
+.cart-btn .ic{color:var(--brand-purple)}
+.cart-btn.is-filled,.cart-btn.is-filled .ic{color:var(--text-inverse)}
+.cart-btn.is-filled::before{border-color:var(--border-control)}
+.gh-rail{width:100%;max-width:var(--frame);height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 72px;background:var(--surface-page);border-bottom:1px solid var(--border-control);color:var(--text-secondary)}
+.gh-rail .rail-item{height:40px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.gh-rail-wrap{width:100%;display:flex;justify-content:center;background:var(--surface-page)}
+.gh-bar{padding:0 max(var(--layout-gutter), calc((100% - var(--container)) / 2))}
+.cart-btn{overflow:hidden;isolation:isolate;cursor:pointer}
+/* v0.8.5 (i015 / i068): Add from the open search panel does not open the mini cart; the cart badge pulses once instead. samo u kodu */
+@keyframes cart-pulse{0%{transform:scale(1)}35%{transform:scale(1.35)}100%{transform:scale(1)}}
+.cart-btn.is-pulse .badge{animation:cart-pulse 600ms ease-out}
+@media (prefers-reduced-motion: reduce){.cart-btn.is-pulse .badge{animation:none}}

@@ -1,0 +1,74 @@
+/* =========================================================
+   SEARCH: Pill Default / Active 5108:4214 + Navigation / Search Dropdown 5108:4183
+   v0.8.4: version layers merged into this module (computed styles verified identical).
+   History:
+   - v0.3.3: Search Dropdown update (Navigation / Search Dropdown 5108:4183)
+   - v0.7.1 - Search: clear (X) desno od teksta, vidi se samo kad polje ima tekst. Samo u kodu (Figma 5108:4214 nema clear).
+   - v0.8.3 (i013) - card states, samo u kodu (Figma has no Added / Volume Nudge / Stock Limit states yet). Tokens only. Hint bubble: above the counter, right aligned (below it in the search panel, where the top row would clip it), small arrow. Nudge = surface/inverse + accent/yellow link (as the What's 
+   ========================================================= */
+/* ========================================================= SEARCH Navigation / Search Pill 5079:1844 (Default / Active) Navigation / Search Dropdown 5108:4183 ========================================================= */
+:root{--surface-hover:#FFFAE8;--search-focus:#FFCC00;--dim:rgba(26,26,26,.20);--overlay-blur:8px;--elev-overlay:0 12px 32px rgba(0,0,0,.12)}
+.gh{position:relative;z-index:30}
+.search{position:relative;width:253px;height:40px;flex:none}
+.search .search-pill{cursor:text}
+.search-field{display:none;position:absolute;top:0;left:-656px;width:909px;height:40px;align-items:center;gap:var(--space-8);padding:0 var(--space-16);background:var(--surface-page);border:1px solid var(--search-focus);border-radius:var(--radius-md);overflow:hidden}
+.search-field input{flex:1 0 0;min-width:1px;border:0;outline:0;background:transparent;font:400 14px/20px var(--font);color:var(--text-primary);padding:0}
+.search.is-active .search-pill{visibility:hidden}
+.search.is-active .search-field{display:flex}
+.sd{display:none;position:absolute;left:-792px;top:100px;width:1288px;padding:var(--space-32);background:var(--surface-page);border:1px solid var(--border-control);border-radius:var(--radius-lg);box-shadow:var(--elev-overlay);overflow:hidden}
+.search.is-open .sd{display:block}
+.sd-body{display:flex;gap:var(--space-24);align-items:flex-start}
+.sd-terms{width:436px;flex:none;display:flex;flex-direction:column;gap:var(--space-32)}
+.sd-group{display:flex;flex-direction:column;gap:var(--space-8)}
+.sd-label{color:var(--text-muted)}
+.sd-rows{display:flex;flex-direction:column}
+.sd-row{display:flex;padding:var(--space-8) var(--space-12);border-radius:var(--radius-md);color:var(--text-primary);cursor:pointer}
+.sd-row.is-active{background:var(--surface-hover)}
+.sd-row b{font-weight:600}
+.sd-row .in{color:var(--text-muted)}
+.sd-results{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;gap:var(--space-16)}
+.sd-rhead{display:flex;justify-content:space-between;align-items:center;color:var(--text-primary);white-space:nowrap}
+.sd-rhead .all{white-space:pre;cursor:pointer}
+.sd-items{display:flex;flex-direction:column;gap:var(--space-8)}
+.sd-item{display:flex;align-items:center;gap:var(--space-16);padding:var(--space-12);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);overflow:hidden}
+.sd-item.bg-page{background:var(--surface-page)}
+.sd-item.bg-raised{background:var(--surface-raised)}
+.sd-item.bg-hero{background:var(--surface-page)}   /* surface/hero retired */
+.sd-item.is-bundle{background:var(--surface-tint-lilac);border-color:transparent}
+.sd-thumb{width:64px;height:64px;border-radius:var(--radius-md);background:var(--surface-page);flex:none;overflow:hidden}
+.sd-thumbs{display:flex;gap:var(--space-4);flex:none}
+.sd-thumbs .sd-thumb{width:48px;height:48px}
+.sd-thumb img{width:100%;height:100%;object-fit:contain}
+.sd-info{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;gap:var(--space-4);overflow:hidden}
+.sd-info .brand{color:var(--text-muted);white-space:nowrap}
+.sd-info .name{color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sd-info .meta{color:var(--text-muted);white-space:nowrap}
+.sd-item.is-bundle .sd-info .name{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.sd-price{width:80px;flex:none;display:flex;flex-direction:column;align-items:flex-end;white-space:nowrap}
+.sd-price .amt{color:var(--text-primary)}
+.sd-price .vat{color:var(--text-muted)}
+.sd-price .was{color:var(--brand-pink);text-decoration:line-through}
+.sd-terms{align-self:stretch;justify-content:space-between;gap:var(--space-32)}
+.sd-terms-top{display:flex;flex-direction:column;gap:var(--space-32)}
+.sd-all{align-self:flex-start;padding:var(--space-8) var(--space-12);border-radius:var(--radius-md);color:var(--text-primary);white-space:pre;cursor:pointer}
+.sd-divider{width:1px;align-self:stretch;flex:none;background:var(--border-subtle)}
+.sd-rhead{color:var(--text-muted)}
+.sd-items{gap:var(--space-16)}
+.sd-item,.sd-item.bg-page,.sd-item.bg-raised,.sd-item.bg-hero{background:transparent;border:0;border-radius:var(--radius-lg);padding:var(--space-12)}
+.sd-item.is-bundle{background:var(--surface-tint-lilac)}
+.sd-thumbs{gap:0;isolation:isolate}
+.sd-thumbs .sd-thumb{position:relative;border:1px solid var(--border-subtle);margin-right:-16px}
+.sd-thumbs .sd-thumb:nth-child(1){z-index:3}
+.sd-thumbs .sd-thumb:nth-child(2){z-index:2}
+.sd-thumbs .sd-thumb:nth-child(3){z-index:1;margin-right:0}
+.sd-close{position:absolute;right:31px;top:27px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--surface-page);border:1px solid var(--border-control);border-radius:var(--radius-pill);box-shadow:var(--elev-overlay);color:var(--text-secondary)}
+.sf-clear{flex:none;width:24px;height:24px;margin-right:-4px;display:flex;align-items:center;justify-content:center;border:0;border-radius:var(--radius-pill);background:transparent;color:var(--text-muted);cursor:pointer}
+.sf-clear[hidden]{display:none}
+.sf-clear:hover{color:var(--text-primary);background:var(--surface-subtle)}
+.sf-clear:focus-visible{outline:2px solid var(--brand-purple);outline-offset:1px}
+.sd-item .qhint{bottom:auto;top:calc(100% + 8px)}
+.sd-item .qhint::after{top:auto;bottom:100%;border-top-color:transparent!important}
+.sd-item .qhint.is-nudge::after{border-bottom-color:var(--surface-inverse)}
+.sd-item .qhint.is-limit::after{border-bottom-color:var(--status-error)}
+.sd-item{overflow:visible}   /* row had overflow:hidden (no visible effect), it clipped the hint */
+.sd-item:has(.qhint:not([hidden])){position:relative;z-index:2}

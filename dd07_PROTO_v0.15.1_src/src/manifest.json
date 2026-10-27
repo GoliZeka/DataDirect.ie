@@ -1,0 +1,107 @@
+{
+ "head": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>DataDirect Home</title>\n",
+ "mid_head": "\n",
+ "after_css": "\n</head>\n",
+ "style_tags": [
+  "<style>",
+  "<style>"
+ ],
+ "css": [
+  "styles/01_tokens.css",
+  "styles/02_base.css",
+  "styles/10_header.css",
+  "styles/11_footer.css",
+  "styles/12_search.css",
+  "styles/13_counter.css",
+  "styles/14_add-to-cart.css",
+  "styles/15_overlay.css",
+  "styles/16_minicart.css",
+  "styles/17_megamenu.css",
+  "styles/20_home-sections.css",
+  "styles/30_pages.css",
+  "styles/31_plp.css",
+  "styles/32_pdp.css",
+  "styles/33_checkout.css",
+  "styles/34_campaign.css"
+ ],
+ "js": [
+  "scripts/00_links-table.js",
+  "scripts/01_data.js",
+  "scripts/02_products.js",
+  "scripts/03_img-fallback.js",
+  "scripts/10_cart.js",
+  "scripts/11_overlay.js",
+  "scripts/12_search.js",
+  "scripts/20_carousel.js",
+  "scripts/21_rails.js",
+  "scripts/22_links-click.js",
+  "scripts/23_counter.js",
+  "scripts/24_minicart.js",
+  "scripts/25_card-states.js",
+  "scripts/31_megamenu.js",
+  "scripts/33_plp.js",
+  "scripts/34_pdp.js",
+  "scripts/35_checkout.js",
+  "scripts/36_campaign.js",
+  "scripts/30_router.js",
+  "scripts/32_hero-click.js"
+ ],
+ "body": [
+  "partials/00_body-open.html",
+  "partials/10_header.html",
+  "partials/12_megamenu.html",
+  "partials/15_dim.html",
+  "pages/home/00_open.html",
+  "pages/home/10_hero.html",
+  "pages/home/20_brands.html",
+  "pages/home/30_promo.html",
+  "pages/home/40_r2g.html",
+  "pages/home/50_whats-new.html",
+  "pages/home/60_best-sellers.html",
+  "pages/home/70_cta.html",
+  "pages/home/99_close.html",
+  "partials/90_footer.html"
+ ],
+ "script_tags": [
+  "<script>",
+  "<script>",
+  "<script>",
+  "<script>"
+ ],
+ "glue": [
+  "\n",
+  "\n",
+  "\n"
+ ],
+ "tail": "\n</body>\n</html>\n",
+ "js_groups": [
+  [
+   "scripts/00_links-table.js",
+   "scripts/01_data.js",
+   "scripts/02_products.js"
+  ],
+  "ASSETS",
+  [
+   "scripts/03_img-fallback.js",
+   "scripts/10_cart.js",
+   "scripts/11_overlay.js",
+   "scripts/12_search.js"
+  ],
+  [
+   "scripts/20_carousel.js",
+   "scripts/21_rails.js",
+   "scripts/22_links-click.js",
+   "scripts/23_counter.js",
+   "scripts/24_minicart.js",
+   "scripts/25_card-states.js",
+   "scripts/31_megamenu.js",
+   "scripts/33_plp.js",
+   "scripts/34_pdp.js",
+   "scripts/35_checkout.js",
+   "scripts/36_campaign.js",
+   "scripts/30_router.js",
+   "scripts/32_hero-click.js"
+  ]
+ ],
+ "name": "dd07_PROTO"
+}

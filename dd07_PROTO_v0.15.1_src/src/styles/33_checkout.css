@@ -1,0 +1,163 @@
+/* =========================================================
+   CART + CHECKOUT POPUP (v0.11, m06 - i040 / i041)
+   Figma: Checkout / Popup / Desktop 5819:2896 (Screen=Cart | Step 1 | Step 2 | Step 3 | Confirmation), 1440 frame,
+   Body padding 32 / 76, gap 24, columns main + 440 (gap 24). Popup max height = window - 48; if it does not fit, only the
+   form box scrolls, the Order summary stays. Overlay = same dim + blur as search (--dim, --overlay-blur).
+   v0.12 (i084): popup radius / sizing, focus and error states are now in Figma (DEV NOTE 5823:24369, Form / Input Focus + Error).
+   ========================================================= */
+.co{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center}
+.co[hidden]{display:none}
+body.co-open{overflow:hidden}
+.co-dim{position:absolute;inset:0;background:var(--dim);-webkit-backdrop-filter:blur(var(--overlay-blur));backdrop-filter:blur(var(--overlay-blur))}
+.co-panel{position:relative;width:min(var(--frame),calc(100vw - 48px));max-height:calc(100vh - 48px);display:flex;flex-direction:column;background:var(--surface-page);border-radius:var(--radius-xl);overflow:hidden;outline:none;color:var(--text-primary);text-align:left;line-height:normal}
+.co-body{display:flex;flex-direction:column;gap:var(--space-24);padding:var(--space-32) clamp(32px,calc((100vw - 48px - 1288px) / 2),76px);min-height:0;flex:1 1 auto}
+.co-body p,.co-body h1,.co-body h2,.co-body h3{margin:0}
+.co-body a{color:inherit;text-decoration:none}
+/* Button / Close 5726:3214: 40, surface/page, border/control, 24 from the top right */
+.co-x{position:absolute;top:24px;right:24px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--surface-page);border:1px solid var(--border-control);color:var(--text-primary);cursor:pointer}
+.co-x:hover{background:var(--surface-subtle)}
+.co-muted{color:var(--text-muted)}
+.co-sec{color:var(--text-secondary)}
+.co-nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.co-cols{display:flex;gap:var(--space-24);min-height:0}
+.co-main{flex:1 1 0;min-width:0}
+.co-side{flex:none;width:440px;display:flex;flex-direction:column;gap:var(--space-24);position:relative}
+.co-panel[data-layout="form"] .co-cols{flex:0 1 518px}   /* Step boxes and Order summary are 518 high */
+.co-panel[data-layout="form"] .co-side{height:100%}
+
+/* ---------- Cart (Screen=Cart) ---------- */
+.co-title{font:600 32px/36px var(--font);color:var(--text-accent-warm-strong)}   /* v0.13.3 (i046): AA contrast */
+/* Cart items: surface/page, border/subtle, radius 32, padding 12, gap 16; scroll after 5 rows (528) */
+.co-list{align-self:flex-start;display:flex;flex-direction:column;gap:var(--space-16);padding:var(--space-12);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);background:var(--surface-page);max-height:528px;overflow-y:auto;box-sizing:border-box;width:100%}
+.co-list.is-empty{gap:var(--space-4);padding:var(--space-32);align-items:flex-start}
+/* Cart / Line Item Size=Default 5443:2702: padding 12, gap 16, radius 24; thumb 64 radius 12 surface/subtle */
+.co-li{display:flex;align-items:center;gap:var(--space-16);padding:var(--space-12);border-radius:var(--radius-lg);flex:none}
+.co-th{flex:none;width:64px;height:64px;border-radius:var(--radius-md);background:var(--surface-subtle);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.co-th.s48{width:48px;height:48px}
+.co-th img{width:100%;height:100%;object-fit:contain}
+.co-li-tx{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:var(--space-4)}
+.co-eb{color:var(--text-muted);text-transform:uppercase}
+.co-pr{flex:none;min-width:80px;display:flex;flex-direction:column;align-items:flex-end;text-align:right}
+.co-li .qty{height:36px;box-sizing:border-box}
+.co-li .qty-btn{width:28px;height:28px}
+.co-li .qty-val{width:32px;height:28px}
+.co-rm{flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--border-control);background:var(--surface-page);color:var(--text-secondary);font:400 16px/24px var(--font);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.co-rm:hover{background:var(--surface-subtle);color:var(--text-primary)}
+.co-panel[data-layout="list"] .co-side > .co-btn{width:100%;margin-top:auto}
+.co-cont{color:var(--text-primary)}
+.co-panel[data-layout="list"] .co-cont{position:absolute;top:calc(100% + 12px);right:0}
+.co-panel[data-layout="list"] .co-body{padding-bottom:60px}   /* room for Continue shopping under the columns */   /* Continue shopping 12 under the button, right */
+.co-cont:hover{text-decoration:underline}
+
+/* ---------- Commerce / Order Summary 5818:314: surface/hero, border/subtle, radius 16, padding 24, gap 16 ---------- */
+.co-sum{display:flex;flex-direction:column;gap:var(--space-16);padding:var(--space-24);background:var(--surface-hero);border:1px solid var(--border-subtle);border-radius:16px;box-sizing:border-box;min-height:0}
+.co-sum.is-checkout{height:100%;overflow:hidden}
+.co-sum-t{font:600 20px/22px var(--font)}
+.co-sl{display:flex;justify-content:space-between;gap:var(--space-16);font:400 14px/20px var(--font);color:var(--text-primary)}
+.co-sl span:first-child{color:var(--text-secondary)}
+.co-sl.is-total,.co-sl.is-total span:first-child{font:600 16px/24px var(--font);color:var(--text-primary)}
+.co-div{height:1px;border:0;margin:0;background:var(--border-subtle);flex:none}
+/* Items: Cart / Line Item Size=Summary 5677:3208 (72, thumb 48, gap 12); max 3 visible (248), then scroll + 4 px bar text/muted */
+.co-sum-items{display:flex;flex-direction:column;gap:var(--space-16);max-height:248px;overflow-y:auto;padding-right:var(--space-12);flex:0 1 auto;min-height:0;scrollbar-width:thin;scrollbar-color:var(--text-muted) transparent}
+.co-sum-items::-webkit-scrollbar{width:4px}
+.co-sum-items::-webkit-scrollbar-thumb{background:var(--text-muted);border-radius:2px}
+.co-sum-items + .co-div{margin-top:auto}   /* totals sit at the bottom, in line with the CTA */
+.co-li-s{display:flex;align-items:center;gap:var(--space-12);padding:var(--space-12) 0;flex:none}
+.co-li-m{display:flex;gap:var(--space-4);color:var(--text-muted)}
+.co-li-m .t-caption-sb{color:var(--text-secondary)}
+
+/* ---------- Checkout / Stepper 5818:357: 3 pills, gap 24; active 48 (gradient Stepper/Active 1-3), done / upcoming 50 with border ---------- */
+.co-steps{display:flex;gap:var(--space-24);align-items:flex-start;flex:none;padding-right:max(0px,calc(72px - clamp(32px,calc((100vw - 48px - 1288px) / 2),76px)))}   /* keeps clear of ✕ on narrow windows */
+.co-step{flex:1 1 0;min-width:0;display:flex;align-items:center;gap:var(--space-12);padding:12px 16px;border-radius:var(--radius-pill);border:1px solid var(--border-control);font:400 14px/20px var(--font);color:var(--text-muted);box-sizing:border-box;height:50px}
+.co-idx{flex:none;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:600 12px/16px var(--font);background:var(--border-control);color:var(--text-muted)}
+.co-step.is-active{border:0;height:48px;color:var(--brand-purple);font-weight:600}
+.co-step.is-active .co-idx{background:var(--brand-pink);color:var(--text-inverse)}
+.co-step.is-active.s1{background:linear-gradient(90deg,#FBF6E6 0%,#F6EECE 100%)}   /* Stepper/Active 1 */
+.co-step.is-active.s2{background:linear-gradient(90deg,#F8F0D2 0%,#F7E2A0 100%)}   /* Stepper/Active 2 */
+.co-step.is-active.s3{background:linear-gradient(90deg,#F7E9B8 0%,#FAD56A 100%)}   /* Stepper/Active 3 */
+.co-step.is-done{background:#F6F5F3;color:var(--text-accent-warm-strong)}
+.co-step.is-done .co-idx{background:var(--surface-tint-pink);color:var(--brand-pink)}
+a.co-step.is-done:hover{border-color:var(--border-subtle)}
+
+/* ---------- Step box: surface/page, border/subtle, radius 12, padding 24, gap 16 ---------- */
+.co-box{display:flex;flex-direction:column;gap:var(--space-16);padding:var(--space-24);background:var(--surface-page);border:1px solid var(--border-subtle);border-radius:var(--radius-md);overflow-y:auto;box-sizing:border-box;margin:0}
+.co-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16) var(--space-24)}
+.co-f{display:flex;flex-direction:column;gap:var(--space-8);min-width:0}
+.co-lb{color:var(--text-secondary)}
+/* Form / Input 5680:3354 State=Filled: 48, radius 12, padding 0 16, surface/tint-lilac, Body */
+.co-in{height:48px;padding:0 var(--space-16);border:0;border-radius:var(--radius-md);background:var(--surface-tint-lilac);color:var(--text-primary);box-sizing:border-box;width:100%;outline:none}
+.co-in:focus{box-shadow:inset 0 0 0 1.5px var(--border-selected)}
+.co-in.is-error{box-shadow:inset 0 0 0 1.5px var(--status-error)}
+.co-act{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-16);flex:none}
+/* Button / Primary Theme=Checkout 5663:3626 (pill 48, Stepper/Active 3, dark label); Theme=Brand for Start shopping */
+.co-btn{height:48px;padding:12px 24px;border:0;border-radius:var(--radius-pill);background:linear-gradient(90deg,#F7E9B8 0%,#FAD56A 100%);color:var(--text-primary);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box}
+.co-btn:hover{filter:brightness(.97)}
+.co-btn.is-brand{background:linear-gradient(90deg,#4E43AD 0%,#FF00A1 100%);color:var(--text-inverse)}
+.co-back{color:var(--text-secondary)}
+.co-back:hover{color:var(--text-primary)}
+/* Step 2: Billing & delivery row */
+.co-bd{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--space-24)}
+.co-bill,.co-dlv{display:flex;flex-direction:column;gap:var(--space-4)}
+/* Form / Checkbox 2548:6883: row 28 (padding 6), box 16 radius 4 border/strong 1.5; checked = text/muted fill + white ✓ */
+.co-cb{display:inline-flex;align-items:center;gap:var(--space-8);padding:6px 0;cursor:pointer;color:var(--text-primary);position:relative}
+.co-cb input{position:absolute;opacity:0;width:1px;height:1px}
+.co-cb .box{width:16px;height:16px;flex:none;border-radius:4px;border:1.5px solid var(--border-strong);background:var(--surface-page);display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+.co-cb input:checked + .box{background:var(--text-muted)}
+.co-cb input:checked + .box::after{content:"✓";color:var(--text-inverse);font:600 12px/16px var(--font)}
+.co-cb input:focus-visible + .box{outline:2px solid var(--brand-purple);outline-offset:2px}
+.co-terms.is-error .box{border-color:var(--status-error)}
+.co-terms.is-error .co-cb{color:var(--status-error)}
+/* Commerce / Delivery Info Chip 5717:3410 (no tokens for #F8F4EC / #F1E2B6 / #5B4E46, as in Figma) */
+.co-chip{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#F8F4EC;border:1px solid var(--border-subtle);border-radius:var(--radius-md)}
+.co-chip-ic{width:28px;height:28px;border-radius:var(--radius-sm);background:#F1E2B6;display:flex;align-items:center;justify-content:center;color:var(--text-primary)}
+.co-chip-t{display:block;font:500 13px/16px var(--font);color:var(--text-primary)}
+.co-chip-p{display:block;font:400 12px/16px var(--font);color:#5B4E46}
+/* Step 3: Checkout / Recap Tile 5818:404 (surface/tint-lilac, radius 12, padding 16, gap 8) + Form / Radio Card 5818:366 */
+.co-recap{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-24)}
+.co-recap.is-3{grid-template-columns:repeat(3,1fr)}
+.co-tile{display:flex;flex-direction:column;gap:var(--space-8);padding:var(--space-16);background:var(--surface-tint-lilac);border-radius:var(--radius-md);min-width:0}
+.co-tile-h{display:flex;justify-content:space-between;gap:var(--space-8)}
+.co-edit{color:var(--text-secondary)}
+.co-edit:hover{color:var(--text-primary);text-decoration:underline}
+.co-tile-b{color:var(--text-secondary)}
+.co-h3{font:600 20px/22px var(--font)}
+.co-pay{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-24)}
+.co-radio{display:flex;align-items:center;gap:var(--space-12);padding:var(--space-16);border:1px solid var(--border-subtle);border-radius:var(--radius-md);cursor:pointer;position:relative;color:var(--text-primary)}
+.co-radio input{position:absolute;opacity:0;width:1px;height:1px}
+.co-radio .dot{width:20px;height:20px;flex:none;border-radius:50%;border:1.5px solid var(--text-muted);box-sizing:border-box}
+.co-radio.is-on{border-color:var(--text-primary)}
+.co-radio.is-on .dot{border:6px solid var(--text-primary)}
+.co-radio input:focus-visible ~ .dot{outline:2px solid var(--brand-purple);outline-offset:2px}
+
+/* ---------- Confirmation: success check (56, brand/pink) on the stepper line, at the right end of the main column ---------- */
+.co-ok-line{height:50px;align-items:center;justify-content:flex-end;padding-right:calc(440px + 24px - 5px)}
+.co-ok{width:56px;height:56px;border-radius:50%;background:var(--brand-pink);color:var(--text-inverse);display:flex;align-items:center;justify-content:center}
+.co-conf{display:flex;flex-direction:column;gap:var(--space-16);padding:var(--space-24);border-radius:16px;background:linear-gradient(90deg,#F7E9B8 0%,#FAD56A 100%)}
+.co-conf .co-recap{margin-bottom:var(--space-8)}
+
+/* ---------- v0.13 Quick Order + Request a quote (Quick Order & RFQ / Popup / Desktop 5828:24175) ---------- */
+.co-head{display:flex;flex-direction:column;gap:var(--space-8);padding-right:48px}
+.co-warn{color:var(--status-warning)}
+/* Lookup row: Form / Input (fill) + Quantity Counter + Add (Theme=Brand) + Upload CSV (Button / Secondary), gap 12 */
+.qk-look{display:flex;flex-direction:column;gap:var(--space-8);flex:none}
+.qk-row{display:flex;align-items:center;gap:var(--space-12);margin:0}
+.qk-row .co-in{flex:1 1 auto;min-width:0}
+.qk-row .qty{height:36px;box-sizing:border-box}
+.qk-row .qty-btn{width:28px;height:28px}
+.qk-row .qty-val{width:32px;height:28px}
+.qk-err{color:var(--status-error)}
+.qk-err[hidden]{display:none}
+.qk-acts{margin-top:auto;display:flex;flex-direction:column;gap:var(--space-12)}
+.qk-acts .co-btn{width:100%}
+.co-panel[data-layout="list"] .qk-acts .co-btn{margin-top:0}
+/* Button / Secondary 5826:8973: pill 48, surface/page, 1 border/strong, Body/SemiBold dark */
+.co-btn2{height:48px;padding:12px 24px;border-radius:var(--radius-pill);background:var(--surface-page);border:1px solid var(--border-strong);color:var(--text-primary);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box}
+.co-btn2:hover{background:var(--surface-subtle)}
+.qk-acts .co-btn2{width:100%}
+.co-btn:disabled,.co-btn2:disabled{opacity:.4;cursor:default;filter:none}
+/* Form / Textarea 5826:8975: like Form / Input Filled, padding 12 16, min 72 in RFQ */
+.co-ta{height:auto;min-height:72px;padding:12px var(--space-16);resize:vertical;font-family:var(--font);line-height:24px;display:block}
+.co-li-s .co-li-tx{flex:1 1 0}
+.co-li-s .co-rm{margin-left:auto}   /* v0.13.1: ✕ on summary rows (Cart / Line Item Size=Summary, Remove on) */
+/* v0.14 (i090): small remove in cart / Quick Order rows and summary rows (24 circle, ✕ 12) */
+.co-rm{width:24px;height:24px;font-size:12px;line-height:16px}

@@ -1,0 +1,45 @@
+/* =========================================================
+   MEGA MENU: Overlay / Mega Menu 2891:12167
+   v0.8.4: version layers merged into this module (computed styles verified identical).
+   History:
+   - v0.8 - Mega Menu 1/1 from Overlay / Mega Menu 2891:12167 (Navigation / Mega Menu / Desktop, 1296 × 624). Master is not tokenized in Figma (greys #FCFCFC / #F0F0F0 / #EBEBEB / #262626 ..., radius 16/8/12): values copied as they are. Title is Outfit Bold 20 in Figma; the embedded Outfit only has 400-6
+   - v0.8.5 (i063 / i075): 1288 wide = grid, left edge at x 76 like all content, y 112 (8 px under the rail). Figma 248:707 resized the same day.
+   ========================================================= */
+.mm{position:absolute;top:112px;left:calc(50% - 644px);width:1288px;height:624px;display:flex;align-items:flex-start;background:#fff;border:1px solid #EBEBEB;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.08);overflow:hidden;z-index:30;line-height:normal;text-align:left;animation:mm-in 150ms ease-out}
+.mm[hidden]{display:none}
+@keyframes mm-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.mm{animation:none}}
+.mm-index{flex:none;width:304px;height:100%;display:flex;flex-direction:column;gap:4px;padding:24px 16px;background:#FCFCFC;border-right:1px solid #EBEBEB}
+.mm-eyebrow{font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#808080}
+.mm-hsp{height:12px;flex:none}
+.mm-list{display:flex;flex-direction:column;gap:2px}
+.mm-cat{height:40px;display:flex;align-items:center;padding:0 8px;border-radius:8px;font-size:14px;font-weight:500;color:#262626;white-space:nowrap}
+.mm-cat.is-active{background:#F0F0F0;font-weight:600}
+.mm-cat:focus-visible,.mm a:focus-visible{outline:2px solid var(--brand-purple);outline-offset:-2px}
+.mm-content{flex:1 0 0;min-width:1px;height:100%;display:flex;flex-direction:column;gap:16px;padding:24px 52px}
+.mm-title{font-size:20px;font-weight:600;color:#1A1A1A}
+.mm-div{height:1px;background:#EBEBEB;flex:none}
+.mm-cols{display:flex;gap:40px;align-items:flex-start}
+.mm-col{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;gap:10px}
+.mm-colhead{font-size:13px;font-weight:600;color:#4D4D4D}
+.mm-colsp{height:4px;flex:none}
+.mm-link{font-size:14px;font-weight:400;color:#404040}
+.mm-link:hover,a.mm-colhead:hover,.mm-title:hover{color:#1A1A1A;text-decoration:underline;text-underline-offset:3px}   /* samo u kodu */
+.mm-flex{flex:1 0 0;min-height:1px}
+.mm-support{display:flex;gap:16px;align-items:flex-start;white-space:nowrap}
+.mm-box{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;gap:8px;padding:16px 20px;background:#F7F7F7;border-radius:12px;overflow:hidden}
+.mm-bt{font-size:14px;font-weight:600;color:#262626}
+.mm-bl{font-size:13px;font-weight:500;color:#4D73B2}
+/* v0.14.2 (i095, Figma Category Index Item 247:628 + DEV NOTE 5549:11343): light yellow hover / active from the checkout stepper */
+.mm-cat{transition:background-color 150ms ease-out,color 150ms ease-out}
+.mm-cat:hover{background:var(--surface-tint-yellow)}
+.mm-cat.is-active{background:linear-gradient(90deg,var(--surface-tint-yellow),var(--surface-tint-yellow-strong));color:var(--brand-purple);font-weight:600}
+.mm-link{width:fit-content;padding:2px 8px;margin:-2px -8px;border-radius:6px;transition:background-color 150ms ease-out,color 150ms ease-out}
+.mm-link:hover{background:var(--surface-tint-yellow);color:var(--brand-purple);text-decoration:none}
+a.mm-colhead:hover,.mm-title:hover{color:var(--brand-purple)}
+.mm-box{border:1px solid transparent;transition:background 150ms ease-out,border-color 150ms ease-out}
+.mm-box:hover{background:linear-gradient(90deg,var(--surface-tint-yellow),var(--surface-tint-yellow-strong));border-color:var(--surface-tint-yellow-strong)}
+.mm-bl{color:var(--brand-purple)}
+.mm-box:hover .mm-bl{text-decoration:underline;text-underline-offset:3px}
+.mm-bn{font-size:13px;font-weight:400;color:#737373}
+.gh-rail .rail-item{cursor:pointer}

@@ -1,0 +1,21 @@
+/* =========================================================
+   FOOTER
+   v0.8.4: version layers merged into this module (computed styles verified identical).
+   History:
+   - v0.3.2: header + footer content locked to the 1288 grid inside the 1440 frame; backgrounds stay full width
+   ========================================================= */
+/* ========================================================= FOOTER 5048:37265 ========================================================= */
+.ft{width:100%;display:flex;flex-direction:column;align-items:center;gap:var(--space-48);background:var(--surface-inverse)}
+.ft-cols{width:var(--container);display:flex;gap:var(--space-24);align-items:flex-start}
+.ft-col{width:304px;display:flex;flex-direction:column;gap:var(--space-12);align-items:flex-start;flex:none}
+.ft-word{color:var(--text-inverse);white-space:nowrap}
+.ft-tag{color:var(--text-inverse-subtle)}
+.ft-head{color:var(--text-inverse-subtle);white-space:nowrap}
+.ft-link{color:var(--text-inverse-muted);white-space:nowrap}
+.ft-office{width:100%;display:flex;flex-direction:column;gap:var(--space-4);color:var(--text-inverse-muted)}
+.ft-office .nw{white-space:nowrap}
+.ft-divider{width:var(--container);height:1px;background:#3A3430}
+.ft-legal{width:var(--container);display:flex;justify-content:space-between;align-items:flex-start;color:var(--text-inverse-subtle);white-space:nowrap}
+
+/* ========================================================= FOOTER 5048:37265 ========================================================= */
+.ft{padding:var(--space-64) var(--layout-gutter) var(--space-32);padding-left:max(var(--layout-gutter), calc((100% - var(--container)) / 2));padding-right:max(var(--layout-gutter), calc((100% - var(--container)) / 2))}

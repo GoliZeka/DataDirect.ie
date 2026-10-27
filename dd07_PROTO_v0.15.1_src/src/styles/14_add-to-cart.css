@@ -1,0 +1,17 @@
+/* =========================================================
+   ADD TO CART 254:769 (Gradient / Multi / Brand Multi) + Added state (v0.8.3, samo u kodu)
+   v0.8.4: version layers merged into this module (computed styles verified identical).
+   History:
+   - v0.3.3: Search Dropdown update (Navigation / Search Dropdown 5108:4183)
+   - ===== v0.5.6 (Final v1.5 5426:8394) =====
+   - v0.8.3 (i013) - card states, samo u kodu (Figma has no Added / Volume Nudge / Stock Limit states yet). Tokens only. Hint bubble: above the counter, right aligned (below it in the search panel, where the top row would clip it), small arrow. Nudge = surface/inverse + accent/yellow link (as the What's 
+   ========================================================= */
+/* Commerce / Add to Cart 254:769 (Compact) */
+.atc{width:132px;height:40px;flex:none;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 20px;border-radius:var(--radius-md);color:var(--text-inverse);white-space:nowrap}
+.atc.theme-gradient{background:linear-gradient(26.27deg,#4E43AD 16.07%,#FF00A1 63.22%)}
+.atc.theme-multi{background:linear-gradient(67.37deg,#B51CA6 1.8%,rgba(255,183,0,.43) 125.32%)}
+.atc.theme-gradient{background:linear-gradient(31deg,#4E43AD -22%,#FF00A1 68%)}   /* Theme=Gradient, fitted to Figma render (Figma 30.89deg 16.07%/63.22% on 132x40) */
+.atc.theme-multi{background:linear-gradient(73deg,#B51CA6 -14%,rgba(255,183,0,.43) 104%)}   /* Theme=Multi, fitted to Figma render (Figma 71.03deg) */
+.atc.theme-multi-brand{background:var(--grad-multi)}   /* Add to Cart Theme=Multi = Brand/Gradient Multi (5422:8447) */
+.atc.is-added{cursor:default}
+.atc.is-added svg{flex:none}
