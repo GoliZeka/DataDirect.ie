@@ -1392,13 +1392,13 @@ body:has(.cduo) .ft{display:none}
 .cduo-hero .cduo-stage{height:100%}
 .cduo-hero{height:max(640px,calc(100vh - 104px))}   /* v0.15.5: full screen under the header */
 .cduo-hero-v{position:absolute;top:150px;bottom:0;left:50%;width:100vw;margin-left:-50vw;height:calc(100% - 150px);object-fit:cover;object-position:50% 0;display:block}   /* v0.15.6 bleed (kept): full bleed, video starts 150px down */
-.cduo-hero-txt{position:absolute;left:0;right:0;top:max(28px,calc((150px + max(56.25vw, 490px, 100vh - 254px) * 0.27 - 244px) / 2));text-align:center;z-index:1}   /* v0.15.9: title block centred in the grey area above the phone (phone top = 27% of the rendered video) */
-.cduo-hero-t{font:600 88px/1.05 var(--font);letter-spacing:-0.035em}
-.cduo-hero-s{margin-top:6px;font:600 48px/1.2 var(--font);letter-spacing:-0.025em}
+.cduo-hero-txt{position:absolute;left:0;right:0;top:28px;text-align:center;z-index:1}   /* v0.15.13: top set by CSS fallback + JS layout (CampaignDuo heroLayout): centred above the phone, never overlapping it */
+.cduo-hero-t{font:600 clamp(56px,6.2vw,88px)/1.05 var(--font);letter-spacing:-0.035em}   /* v0.15.13: smaller on small screens */
+.cduo-hero-s{margin-top:6px;font:600 clamp(28px,3.4vw,48px)/1.2 var(--font);letter-spacing:-0.025em}
 .cduo-hero-t,.cduo-hero-s{opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .cduo-hero.is-on .cduo-hero-t{opacity:1;transform:none;transition-delay:.15s}
 .cduo-hero.is-on .cduo-hero-s{opacity:1;transform:none;transition-delay:1.1s}
-.cduo-hero-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:350px;height:48px;margin-top:40px;border-radius:var(--radius-md);color:var(--text-primary);background:linear-gradient(90deg,#D9D7D2 0%,#F6F5F2 45%,#CFCCC6 100%);box-shadow:inset 0 0 0 1px #C6C3BE,0 6px 18px -8px rgba(31,27,24,.25);opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}   /* v0.15.11: Shop now in white titanium (iPhone Duo white mid tones), 350 wide, Figma 5986:431 */
+.cduo-hero-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:350px;height:48px;margin-top:clamp(20px,2.8vw,40px);border-radius:var(--radius-md);color:var(--text-primary);background:linear-gradient(90deg,#D9D7D2 0%,#F6F5F2 45%,#CFCCC6 100%);box-shadow:inset 0 0 0 1px #C6C3BE,0 6px 18px -8px rgba(31,27,24,.25);opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}   /* v0.15.11: Shop now in white titanium (iPhone Duo white mid tones), 350 wide, Figma 5986:431 */
 .cduo-hero-btn:hover{background:linear-gradient(90deg,#E2E0DC 0%,#FBFAF8 45%,#D8D5D0 100%)}
 .cduo-hero.is-on .cduo-hero-btn{opacity:1;transform:none;transition-delay:1.6s}
 .cduo.is-static .cduo-hero-btn{opacity:1;transform:none;transition:none}
@@ -3621,7 +3621,7 @@ const CampaignDuo = (() => {
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const ease = t => 1 - Math.pow(1 - t, 3);
   const seg = (p, a, b) => ease(clamp((p - a) / (b - a)));
-  let raf = 0, root = null, onScroll = null, io = null;
+  let raf = 0, root = null, onScroll = null, io = null, heroLayout = null;
   const mount = () => {
     unmount(); root = document.querySelector('.cduo'); if (!root) return;
     const reduce = RM(); root.classList.toggle('is-static', reduce);
@@ -3634,7 +3634,22 @@ const CampaignDuo = (() => {
     const pars = [...root.querySelectorAll('[data-par]')];
     const mark = root.querySelector('.cduo-mark');
     // v0.15.6: hero video autoplays once and holds on the open phone; title, then slogan fade in
-    const heroV = root.querySelector('.cduo-hero-v'), heroS = root.querySelector('.cduo-hero');
+    const heroV = root.querySelector('.cduo-hero-v'), heroS = root.querySelector('.cduo-hero'), heroT = root.querySelector('.cduo-hero-txt');
+    // v0.15.13: hero layout. The phone's top edge sits at 27% of the rendered (cover, top-aligned) video. The title block is centred in the
+    // grey area above it; if that area is too small (small screens, browser zoom), the video moves down so the button always clears the phone.
+    heroLayout = () => {
+      const H = heroS.clientHeight, W = heroS.clientWidth, th = heroT.offsetHeight, GAP = 28;
+      let top = 150;
+      for (let k = 0; k < 3; k++) {
+        const R = Math.max(W * 9 / 16, H - top), phone = top + 0.27 * R, need = th + 2 * GAP;
+        if (phone >= need) break; top += need - phone;
+      }
+      const R = Math.max(W * 9 / 16, H - top), phone = top + 0.27 * R;
+      heroV.style.top = top + 'px'; heroV.style.height = Math.max(0, H - top) + 'px';
+      heroT.style.top = Math.max(16, (phone - th) / 2) + 'px';
+    };
+    heroLayout(); addEventListener('resize', heroLayout);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => heroLayout && heroLayout());
     if (reduce) { heroV.addEventListener('loadedmetadata', () => { heroV.currentTime = Math.max(0, heroV.duration - 0.05); }, { once: true }); heroS.classList.add('is-on'); }
     else { requestAnimationFrame(() => heroS.classList.add('is-on')); const hp = heroV.play(); if (hp && hp.catch) hp.catch(() => {}); }
     if (reduce) { hinge.addEventListener('loadedmetadata', () => { hinge.currentTime = Math.max(0, hinge.duration - 0.05); }, { once: true }); }
@@ -3680,7 +3695,7 @@ const CampaignDuo = (() => {
   };
   const unmount = () => {
     if (onScroll) { removeEventListener('scroll', onScroll); removeEventListener('resize', onScroll); onScroll = null; }
-    if (io) { io.disconnect(); io = null; } root = null;
+    if (io) { io.disconnect(); io = null; } if (heroLayout) { removeEventListener('resize', heroLayout); heroLayout = null; } root = null;
   };
   addEventListener('hashchange', () => { if (!location.hash.includes('campaign/iphone-duo')) unmount(); });
 
