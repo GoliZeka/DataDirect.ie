@@ -1392,7 +1392,7 @@ body:has(.cduo) .ft{display:none}
 .cduo-hero .cduo-stage{height:100%}
 .cduo-hero{height:max(640px,calc(100vh - 104px))}   /* v0.15.5: full screen under the header */
 .cduo-hero-v{position:absolute;top:150px;bottom:0;left:50%;width:100vw;margin-left:-50vw;height:calc(100% - 150px);object-fit:cover;object-position:50% 0;display:block}   /* v0.15.6 bleed (kept): full bleed, video starts 150px down */
-.cduo-hero-txt{position:absolute;left:0;right:0;top:max(28px,calc(150px + max(56.25vw, 490px, 100vh - 254px) * 0.27 - 196px));text-align:center;z-index:1}   /* v0.15.8: title block sits ~36px above the phone (phone top = 27% of the rendered video) */
+.cduo-hero-txt{position:absolute;left:0;right:0;top:max(28px,calc((150px + max(56.25vw, 490px, 100vh - 254px) * 0.27 - 156px) / 2));text-align:center;z-index:1}   /* v0.15.9: title block centred in the grey area above the phone (phone top = 27% of the rendered video) */
 .cduo-hero-t{font:600 88px/1.05 var(--font);letter-spacing:-0.035em}
 .cduo-hero-s{margin-top:6px;font:600 48px/1.2 var(--font);letter-spacing:-0.025em}
 .cduo-hero-t,.cduo-hero-s{opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
