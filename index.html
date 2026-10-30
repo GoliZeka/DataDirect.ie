@@ -507,8 +507,8 @@ a.mm-colhead:hover,.mm-title:hover{color:var(--brand-purple)}
 
 /* ---------- PRODUCT RAILS 5267:4149 / 5298:5723 ---------- */
 .sec-rail{background:var(--surface-page);padding-top:var(--space-96)}
-.sec-rail.wn{height:660px}
-.sec-rail.bs{height:691px}
+.sec-rail.wn{height:auto;padding-bottom:0}   /* v0.15.17 i202: Figma Home v1.6 5524:5041 pb 0 - 96 from cards to the Best sellers title, maxi overlaps it (was 660 fixed) */
+.sec-rail.bs{height:auto;padding-bottom:var(--space-96)}   /* v0.15.17 i202: content hug + 96 before the CTA band (was 691 fixed) */
 .rail{display:flex;flex-direction:column;gap:24px}
 .rail-head{display:flex;align-items:flex-end;justify-content:space-between;color:var(--text-primary)}
 .rail-head .ttl{flex:1 0 0}
