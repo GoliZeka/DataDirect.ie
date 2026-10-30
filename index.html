@@ -1392,14 +1392,14 @@ body:has(.cduo) .ft{display:none}
 .cduo-hero .cduo-stage{height:100%}
 .cduo-hero{height:max(640px,calc(100vh - 104px))}   /* v0.15.5: full screen under the header */
 .cduo-hero-v{position:absolute;top:150px;bottom:0;left:50%;width:100vw;margin-left:-50vw;height:calc(100% - 150px);object-fit:cover;object-position:50% 0;display:block}   /* v0.15.6 bleed (kept): full bleed, video starts 150px down */
-.cduo-hero-txt{position:absolute;left:0;right:0;top:max(28px,calc((150px + max(56.25vw, 490px, 100vh - 254px) * 0.27 - 222px) / 2));text-align:center;z-index:1}   /* v0.15.9: title block centred in the grey area above the phone (phone top = 27% of the rendered video) */
+.cduo-hero-txt{position:absolute;left:0;right:0;top:max(28px,calc((150px + max(56.25vw, 490px, 100vh - 254px) * 0.27 - 244px) / 2));text-align:center;z-index:1}   /* v0.15.9: title block centred in the grey area above the phone (phone top = 27% of the rendered video) */
 .cduo-hero-t{font:600 88px/1.05 var(--font);letter-spacing:-0.035em}
 .cduo-hero-s{margin-top:6px;font:600 48px/1.2 var(--font);letter-spacing:-0.025em}
 .cduo-hero-t,.cduo-hero-s{opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .cduo-hero.is-on .cduo-hero-t{opacity:1;transform:none;transition-delay:.15s}
 .cduo-hero.is-on .cduo-hero-s{opacity:1;transform:none;transition-delay:1.1s}
-.cduo-hero-btn{display:inline-flex;width:auto;height:48px;padding:0 28px;margin-top:18px;opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}   /* v0.15.10: Shop now (Add to Cart Theme=Multi), Figma 5986:431 */
-.cduo-hero-btn:hover{opacity:.92}
+.cduo-hero-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:350px;height:48px;margin-top:40px;border-radius:var(--radius-md);color:var(--text-primary);background:linear-gradient(90deg,#D9D7D2 0%,#F6F5F2 45%,#CFCCC6 100%);box-shadow:inset 0 0 0 1px #C6C3BE,0 6px 18px -8px rgba(31,27,24,.25);opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}   /* v0.15.11: Shop now in white titanium (iPhone Duo white mid tones), 350 wide, Figma 5986:431 */
+.cduo-hero-btn:hover{background:linear-gradient(90deg,#E2E0DC 0%,#FBFAF8 45%,#D8D5D0 100%)}
 .cduo-hero.is-on .cduo-hero-btn{opacity:1;transform:none;transition-delay:1.6s}
 .cduo.is-static .cduo-hero-btn{opacity:1;transform:none;transition:none}
 .cduo-buy{scroll-margin-top:24px}
@@ -3578,7 +3578,7 @@ const CampaignDuo = (() => {
     const html = `<div class="cduo">` +
       `<section class="cduo-hero" aria-label="iPhone Duo">` +
         `<video class="cduo-hero-v" muted playsinline preload="auto" poster="${DIR}duo_01_hero_poster.jpg" src="${DIR}duo_01_hero_${r}.mp4"></video>` +
-        `<div class="cduo-stage"><div class="cduo-hero-txt"><h1 class="cduo-hero-t">iPhone Duo</h1><p class="cduo-hero-s">One device. More possibilities.</p><a class="btn-shop t-small-sb cduo-hero-btn" href="#cduo-buy" data-goto="buy"><img alt="" src="${A('dell_cart')}">Shop now</a></div></div></section>` +
+        `<div class="cduo-stage"><div class="cduo-hero-txt"><h1 class="cduo-hero-t">iPhone Duo</h1><p class="cduo-hero-s">One device. More possibilities.</p><a class="t-small-sb cduo-hero-btn" href="#cduo-buy" data-goto="buy"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2 2H4.13333L6.26667 14H15.8667L18 5.6H5.2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/><circle cx="8.5" cy="16.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="16.5" r="1.5" fill="currentColor"/></svg>Shop now</a></div></div></section>` +
       `<section class="cduo-design" aria-label="Design"><div class="cduo-pin"><div class="cduo-slide"><div class="cduo-stage">` +
         `<video class="cduo-hinge" muted playsinline preload="auto" poster="${DIR}duo_02_hinge_poster.jpg" src="${DIR}duo_02_hinge_scroll_${r}.mp4"></video>` +
         `<p class="cduo-eye cduo-d-eye">DESIGN</p><h2 class="cduo-d-t"><span class="cduo-d1">A new way</span> <span class="cduo-d2">to unfold.</span></h2>` +
