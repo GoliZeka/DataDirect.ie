@@ -1473,6 +1473,11 @@ body:has(.cduo) .ft{display:none}
 .cduo-shop{width:300px;height:48px}
 .cduo-shop:hover,.cduo-rq:hover{opacity:.92}
 .cduo-rq{width:300px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-md);background:#fff;border:1px solid #E8DED7;color:var(--text-primary)}
+/* v0.15.15 i200: end screen - product hero scrolls fully out, buy box sits mid-screen, closing pinned to the bottom (header is not sticky, so 100vh) */
+.cduo-end{min-height:100vh;display:flex;flex-direction:column;background:#FDFCF8}
+.cduo-end .cduo-buy{flex:1;display:flex;flex-direction:column;justify-content:center}
+.cduo-end .cduo-buy .cduo-in{padding-top:24px;padding-bottom:24px}
+.cduo-end .cduo-close{flex:none}
 /* 07 Closing 5973:2048 */
 .cduo-close{background:#FDFCF8;padding:48px 0 33px;display:flex;flex-direction:column;align-items:center;gap:40px;text-align:center;font:500 26px/1.3 var(--font);letter-spacing:-0.01em}
 .cduo-close .gh-logo{display:inline-flex}
@@ -3599,6 +3604,7 @@ const CampaignDuo = (() => {
         `<img class="cduo-ph-phone" data-par="-0.06" alt="iPhone Duo, half open" src="${A('duo_phone')}">` +
         `<div class="cduo-badge" data-pop><span class="cduo-bp"><i>€</i>1.247</span><span class="cduo-bn">excl. VAT</span></div>` +
       `</div></section>` +
+      `<div class="cduo-end" id="cduo-end">` +   /* v0.15.15 i200: last screen = buy box centred + closing pinned to the bottom */
       `<section class="cduo-buy" id="cduo-buy"><div class="cduo-in">` +
         `<h2 class="cduo-buy-t" data-rv>${tt('Choose your<br>', 'iPhone Duo.')}</h2>` +
         `<div class="cduo-buy-row"><div class="cduo-buy-img"><img alt="" src="${A(COLS.find(c => c[0] === sel.col)[3])}"></div>` +
@@ -3611,7 +3617,7 @@ const CampaignDuo = (() => {
           `<a class="btn-shop t-small-sb cduo-shop" href="${quote()}"><img alt="" src="${A('dell_cart')}">Shop now</a>` +
           `<a class="cduo-rq t-small-sb" href="${quote()}">Request a Quote</a></div></div>` +
       `</div></section>` +
-      `<footer class="cduo-close"><p>${tt('Meet the new iPhone Duo.<br>', 'Compact when closed, expansive when opened.')}</p><a class="gh-logo" href="#/" aria-label="DataDirect">${logo}</a></footer>` +
+      `<footer class="cduo-close"><p>${tt('Meet the new iPhone Duo.<br>', 'Compact when closed, expansive when opened.')}</p><a class="gh-logo" href="#/" aria-label="DataDirect">${logo}</a></footer></div>` +
       `</div>`;
     requestAnimationFrame(mount);
     return { title: 'iPhone Duo · One device', html, state: null, pdp: true };
@@ -3702,7 +3708,7 @@ const CampaignDuo = (() => {
   // buy box: colour swaps the image, storage selects one; both update the quote link
   document.getElementById('pgView').addEventListener('click', e => {
     const g = e.target.closest('[data-goto="buy"]');   // v0.15.10: hero Shop now scrolls to the buy box (hash route stays)
-    if (g) { e.preventDefault(); const t = document.getElementById('cduo-buy'); if (t) t.scrollIntoView({ behavior: RM() ? 'auto' : 'smooth', block: 'start' }); return; }
+    if (g) { e.preventDefault(); const t = document.getElementById('cduo-end') || document.getElementById('cduo-buy');   /* v0.15.15: to the end screen, buy box lands mid-screen */ if (t) t.scrollIntoView({ behavior: RM() ? 'auto' : 'smooth', block: 'start' }); return; }
     const d = e.target.closest('.cduo-dot'), ch = e.target.closest('.cduo-chip');
     if (!d && !ch) return;
     const box = e.target.closest('.cduo-buy');
